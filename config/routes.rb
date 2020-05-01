@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  resources :item_categories
-  resources :categories
-  resources :items
-  resources :user_lists
-  resources :lists
-  resources :group_users
-  resources :groups
-  resources :users
+  resources :categories, only: [:new, :create, :edit, :update]
+  resources :items, only: [:new, :create, :edit, :update, :destroy]
+  resources :lists, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :groups, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :users, only: [:show, :edit, :update, :destroy]
+
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
+
+  get '/login', to: 'auth#login'
+  post '/verify', to: 'auth#verify'
+  post '/logout', to: 'auth#logout'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
