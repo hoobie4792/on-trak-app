@@ -5,10 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# Category.destroy_all
-# List.destroy_all
-# User.destroy_all
-# Group.destroy_all
+
 
 
 # brandon = User.create(username: "brandon", name: "brandon", email: "brandon@yahoo.com", password: "brandon")
@@ -79,45 +76,56 @@
 # ic = ItemCategory.create(item: item12, category: category3)
 # ic = ItemCategory.create(item: item12, category: category4)
 
+Category.destroy_all
+List.destroy_all
+User.destroy_all
+Group.destroy_all
+
+
+#  USERS
+
 brandon = User.create(username: "BrandonB", name: "Brandon", email: "brandon@brandon.com", password: "brandon")
 joey = User.create(username: "JoeyP", name: "Joey", email: "joey@joey.com", password: "joey")
-
 10.times do
     User.create(username: Faker::Internet.username, name: Faker::Name.name, email: Faker::Internet.email, password: "password" )
 end
 
 #  LISTS
-l1 = List.create(name: "Chores" , due_date: Faker::Date.forward(days: 2))
-l2 = List.create(name: "Garage Cleanup", due_date: Faker::Date.forward(days: 5))
-l3 = List.create(name: "Work Project", due_date: Faker::Date.forward(days: 6))
-l4 = List.create(name: "Honey-Do", due_date: Faker::Date.forward(days: 1))
-l5 = List.create(name: "School Work", due_date: Faker::Date.forward(days: 5))
-l6 = List.create(name: "Birthday Planning", due_date: Faker::Date.forward(days: 7))
-l7 = List.create(name: "Video Game Project", due_date: Faker::Date.forward(days: 8))
-l8 = List.create(name: "Kitchen", due_date: Faker::Date.forward(days: 5))
-l9 = List.create(name: "Build the Shed", due_date: Faker::Date.forward(days: 9))
-l10 = List.create(name: "Write My Paper", due_date: Faker::Date.forward(days: 8))
-l11 = List.create(name: "To-Do", due_date: Faker::Date.forward(days: 4))
-l12 = List.create(name: "To-Do", due_date: Faker::Date.forward(days: 6))
-l13 = List.create(name: "To-Do", due_date: Faker::Date.forward(days: 7))
-l14 = List.create(name: "Mod 2 Project", due_date: Faker::Date.forward(days: 1))
-l15 = List.create(name: "Build the Sculpture", due_date: Faker::Date.forward(days: 8))
-l16 = List.create(name: "Yard Work", due_date: Faker::Date.forward(days: 2))
-l17 = List.create(name: "Honey-Do", due_date: Faker::Date.forward(days: 5))
-l18 = List.create(name: "Finish Song", due_date: Faker::Date.forward(days: 6))
-l19 = List.create(name: "Fix the Car", due_date: Faker::Date.forward(days: 7))
-l20 = List.create(name: "", due_date: Faker::Date.forward(days: 5))
+
+l1 = List.create(name: "My List 1" , due_date: Faker::Date.forward(days: 2))
+l2 = List.create(name: "My List 2", due_date: Faker::Date.forward(days: 5))
+l3 = List.create(name: "My List 3", due_date: Faker::Date.forward(days: 6))
+l4 = List.create(name: "My List 4", due_date: Faker::Date.forward(days: 1))
+l5 = List.create(name: "My List 5", due_date: Faker::Date.forward(days: 5))
+l6 = List.create(name: "My List 6", due_date: Faker::Date.forward(days: 7))
+l7 = List.create(name: "My List 7", due_date: Faker::Date.forward(days: 8))
+l8 = List.create(name: "My List 8", due_date: Faker::Date.forward(days: 5))
+l9 = List.create(name: "My List 9", due_date: Faker::Date.forward(days: 9))
+l10 = List.create(name: "My List 10", due_date: Faker::Date.forward(days: 8))
+l11 = List.create(name: "My Work List 1", due_date: Faker::Date.forward(days: 4))
+l12 = List.create(name: "My Work List 2", due_date: Faker::Date.forward(days: 6))
+l13 = List.create(name: "My Work List 3", due_date: Faker::Date.forward(days: 7))
+l14 = List.create(name: "My Work List 4", due_date: Faker::Date.forward(days: 1))
+l15 = List.create(name: "My Work List 5", due_date: Faker::Date.forward(days: 8))
+l16 = List.create(name: "My Work List 6", due_date: Faker::Date.forward(days: 2))
+l17 = List.create(name: "My Work List 7", due_date: Faker::Date.forward(days: 5))
+l18 = List.create(name: "My Work List 8", due_date: Faker::Date.forward(days: 6))
+l19 = List.create(name: "My Work List 9", due_date: Faker::Date.forward(days: 5))
+l20 = List.create(name: "My Work List 10", due_date: Faker::Date.forward(days: 3))
 end
 
-
+#  GROUPS
 10.times do
-    Group.create(name: )
+    Group.create(name: Faker::Games::Fallout.faction)
 end
 
-10.times do
-    Category.create(name: )	
-end
-
+# CATEGORIES
+cat1 = Category.create(name: "Work" )	
+cat2 = Category.create(name: "Chores")	
+cat3 = Category.create(name: "General")	
+cat4 = Category.create(name: "School")	
+cat5 = Category.create(name: "Car")	
+	
 50.times do
     Item.create(content: , due_date: , priority: , assigned_user: , list_id: List.all.sample.id)
 end
