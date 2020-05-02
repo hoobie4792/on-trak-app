@@ -112,23 +112,38 @@ l17 = List.create(name: "My Work List 7", due_date: Faker::Date.forward(days: 5)
 l18 = List.create(name: "My Work List 8", due_date: Faker::Date.forward(days: 6))
 l19 = List.create(name: "My Work List 9", due_date: Faker::Date.forward(days: 5))
 l20 = List.create(name: "My Work List 10", due_date: Faker::Date.forward(days: 3))
-end
+
 
 #  GROUPS
+
 10.times do
     Group.create(name: Faker::Games::Fallout.faction)
 end
 
 # CATEGORIES
+
 cat1 = Category.create(name: "Work" )	
 cat2 = Category.create(name: "Chores")	
 cat3 = Category.create(name: "General")	
 cat4 = Category.create(name: "School")	
 cat5 = Category.create(name: "Car")	
 	
-50.times do
-    Item.create(content: , due_date: , priority: , assigned_user: , list_id: List.all.sample.id)
+# ITEMS
+
+30.times do
+    Item.create(content: "Item1", due_date: Faker::Date.forward(days: 2), priority: "High", assigned_user_id: User.all.sample.id, list_id: List.all.sample.id)
+end 
+
+30.times do
+    Item.create(content: "Item2", due_date: Faker::Date.forward(days: 3), priority: "Medium", assigned_user_id: User.all.sample.id, list_id: List.all.sample.id)
 end
+
+30.times do
+    Item.create(content: "Item3", due_date: Faker::Date.forward(days: 4), priority: "Low", assigned_user_id: User.all.sample.id, list_id: List.all.sample.id)
+end
+
+
+# JOINERS
 
 20.times do
     ItemCategory.create(item_id: Item.all.sample.id, category_id: Category.all.sample.id)
