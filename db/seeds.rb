@@ -130,7 +130,7 @@ cat5 = Category.create(name: "Car")
     Item.create(content: , due_date: , priority: , assigned_user: , list_id: List.all.sample.id)
 end
 
-10.times do
+20.times do
     ItemCategory.create(item_id: Item.all.sample.id, category_id: Category.all.sample.id)
 end 
 
@@ -140,4 +140,4 @@ end
 
 10.times do
     GroupUser.create(user_id: User.all.sample.id, group_id: Group.all.sample.id)
-end
+end   
