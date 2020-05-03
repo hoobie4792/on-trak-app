@@ -1,0 +1,14 @@
+<% byebug %>
+<% if !flash[:message].nil? %>
+  <%= flash[:message] %><br><br>
+<% end %>
+
+<%= form_with url: '/verify', method: :post do |f| %>
+  <%= f.label :'login[username]' %>
+  <%= f.text_field :'login[username]' %><br>
+
+  <%= f.label :'login[password]' %>
+  <%= f.password_field :'login[password]' %><br>
+
+  <%= f.submit "Login" %>
+<% end %>

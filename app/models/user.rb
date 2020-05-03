@@ -4,6 +4,9 @@ class User < ApplicationRecord
   has_many :group_users, dependent: :destroy
   has_many :groups, through: :group_users
   has_many :items, inverse_of: 'assigned_user'
+
+  validates :username, :email, :name, :password, :password_confirmation, presence: true
+  validates :username, :email, uniqueness: true
   
   has_secure_password
 end

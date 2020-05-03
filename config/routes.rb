@@ -3,10 +3,7 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create, :edit, :update, :destroy]
   resources :lists, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :groups, only: [:show, :new, :create, :edit, :update, :destroy]
-  resources :users, only: [:show, :edit, :update, :destroy]
-
-  get '/signup', to: 'users#new'
-  post '/signup', to: 'users#create'
+  resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
 
   get '/login', to: 'auth#login'
   post '/verify', to: 'auth#verify'
