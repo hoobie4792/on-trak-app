@@ -90,7 +90,28 @@ joey = User.create(username: "JoeyP", name: "Joey", email: "joey@joey.com", pass
     User.create(username: Faker::Internet.username, name: Faker::Name.name, email: Faker::Internet.email, password: "password", password_confirmation: "password")
 end
 
+#  GROUPS
+
+10.times do
+    Group.create(name: Faker::Games::Fallout.faction)
+end
+
 #  LISTS
+
+# Priorities = ["Very Low", "Low", "Medium", "High", "Very High"]
+
+# User.all.each do |user|
+#     rand(0..2).times do
+#         GroupUser.create(user: user, group: Group.all.sample)
+#     end
+
+#     rand(1..4).times do
+#         list = List.create(name: "My List #{rand(0..100)}", due_date: Faker::Date.forward(days: rand(0..8)), user: user)
+#         rand(5..10).times do
+#             Item.create(content: "Item #{0..100}", due_date: Faker::Date.forward(days: rand(0..8)), priority: Priorities.sample, assigned_user: list.users.sample.name, list_id: List.all.sample.id)
+#         end
+#     end
+# end
 
 l1 = List.create(name: "My List 1" , due_date: Faker::Date.forward(days: 2))
 l2 = List.create(name: "My List 2", due_date: Faker::Date.forward(days: 5))
@@ -114,11 +135,7 @@ l19 = List.create(name: "My Work List 9", due_date: Faker::Date.forward(days: 5)
 l20 = List.create(name: "My Work List 10", due_date: Faker::Date.forward(days: 3))
 
 
-#  GROUPS
 
-10.times do
-    Group.create(name: Faker::Games::Fallout.faction)
-end
 
 # CATEGORIES
 
