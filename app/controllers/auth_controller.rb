@@ -1,7 +1,4 @@
 class AuthController < ApplicationController
-  def current_user
-    User.find_by(id: session[:user_id])
-  end
   
   def login
   end
@@ -12,21 +9,14 @@ class AuthController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash[:message] = "Shit broke homie"
-      redirect_to @login_path
+      flash[:message] = "Login Failed: Try again"
+      redirect_to '/login'
     end
-    # if @user
-    #   if @user.authenticate(login_params[:password])
-    #     session[:user_id] = @user.id
-    #     redirect_to user_path(@user)
-    #   else
-    #     flash[:message] = "Shit broke homie"
-    #     redirect_to @login_path
-    #   end
-    # else
-    #   flash[:message] = "Shit broke homie"
-    #   redirect_to @login_path
-    # end
+  end
+
+  def logout
+    session[:user_id] = nil
+    redirect_to '/'
   end
 
   private

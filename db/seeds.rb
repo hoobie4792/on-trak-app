@@ -8,9 +8,9 @@
 
 
 
-# brandon = User.create(username: "brandon", name: "brandon", email: "brandon@yahoo.com", password: "brandon")
-# joey = User.create(username: "joey", name: "joey", email: "joey@yahoo.com", password: "joey")
-# robert = User.create(username: "robert", name: "robert", email: "robert@yahoo.com", password: "robert")
+# brandon = User.create(username: "brandon", name: "brandon", email: "brandon@yahoo.com", password: "brandon", password_confirmation: "brandon")
+# joey = User.create(username: "joey", name: "joey", email: "joey@yahoo.com", password: "joey", password_confirmation: "joey")
+# robert = User.create(username: "robert", name: "robert", email: "robert@yahoo.com", password: "robert", password_confirmation: "robert")
 
 # group1 = Group.create(name: "The Best Group Ever 1")
 # group2 = Group.create(name: "The Best Group Ever 2")
@@ -84,10 +84,10 @@ Group.destroy_all
 
 #  USERS
 
-brandon = User.create(username: "BrandonB", name: "Brandon", email: "brandon@brandon.com", password: "brandon")
-joey = User.create(username: "JoeyP", name: "Joey", email: "joey@joey.com", password: "joey")
+brandon = User.create(username: "BrandonB", name: "Brandon", email: "brandon@brandon.com", password: "brandon", password_confirmation: "brandon")
+joey = User.create(username: "JoeyP", name: "Joey", email: "joey@joey.com", password: "joey", password_confirmation: "joey")
 10.times do
-    User.create(username: Faker::Internet.username, name: Faker::Name.name, email: Faker::Internet.email, password: "password" )
+    User.create(username: Faker::Internet.username, name: Faker::Name.name, email: Faker::Internet.email, password: "password", password_confirmation: "password")
 end
 
 #  LISTS
