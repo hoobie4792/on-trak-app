@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   get '/login', to: 'auth#login'
   post '/verify', to: 'auth#verify'
   post '/logout', to: 'auth#logout'
+
+  post '/lists/add_item', to: 'lists#add_item', as: 'add_item'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
