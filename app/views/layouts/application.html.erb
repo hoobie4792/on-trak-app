@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OnTrakApp</title>
+    <h1>On Trak</h1>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    
+    <% if logged_in? %> <%= current_user.username %>
+    <%= link_to "Log out", logout_path, method: "post" %>
+     <% else %>
+    <%= link_to "Login", login_path %>
+    <a class="navbar-brand" href="/signup">Create User</a>
+    
+    <% end %>
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
