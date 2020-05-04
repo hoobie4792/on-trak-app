@@ -10,12 +10,22 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    byebug
     if @list.save
       UserList.create(user: current_user, list: @list)
-      redirect_to user_path(current_user)
+      redirect_to list_path(@list)
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @list.update(list_params)
+      redirect_to list_path(@list)
+    else
+      render :edit
     end
   end
 
