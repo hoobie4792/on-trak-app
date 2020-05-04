@@ -10,4 +10,12 @@ class User < ApplicationRecord
   validates :username, :email, uniqueness: true
 
   has_secure_password
+
+
+  
+  def to_param
+    username
+  end
+
+
 end
