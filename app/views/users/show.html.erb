@@ -1,17 +1,17 @@
-<h1>Username: <%= current_user.username %></h1>
-<h1>Name: <%= current_user.name %></h1>
-<h1>Email: <%= current_user.email %></h1>
+<h1>Username: <%= @user.username %></h1>
+<h1>Name: <%= @user.name %></h1>
+<h1>Email: <%= @user.email %></h1>
 
-<% current_user.groups.each do |group| %>
+<% @user.groups.each do |group| %>
   <%= render partial: 'groups/group', locals: { group: group } %>
 <% end %>
 <br>
 
-<% current_user.lists.each do |list| %>
+<% @user.lists.each do |list| %>
   <%= render partial: '/lists/list', locals: { list: list } %>
   <br><br>
 <% end %>
 
 <%= button_to "Create New List", new_list_path, method: :get %><br>
 
-<%= button_to "Edit Profile", edit_user_path(current_user), method: :get %>
+<%= button_to "Edit Profile", edit_user_path(@user), method: :get %>

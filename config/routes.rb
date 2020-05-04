@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create, :edit, :update, :destroy]
   resources :lists, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :groups, only: [:show, :new, :create, :edit, :update, :destroy]
-  resources :users, param: :name, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :users, param: :username, only: [:show, :new, :create, :edit, :update, :destroy]
 
   get '/', to: 'static#home'
 
