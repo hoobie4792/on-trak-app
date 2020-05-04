@@ -1,3 +1,17 @@
 <h1>Username: <%= @user.username %></h1>
 <h1>Name: <%= @user.name %></h1>
 <h1>Email: <%= @user.email %></h1>
+
+<% @user.groups.each do |group| %>
+  <%= render partial: 'groups/group', locals: { group: group } %>
+<% end %>
+<br>
+
+<% @user.lists.each do |list| %>
+  <%= render partial: '/lists/list', locals: { list: list } %>
+  <br><br>
+<% end %>
+
+<%= button_to "Create New List", new_list_path, method: :get %><br>
+
+<%= button_to "Edit Profile", edit_user_path(@user), method: :get %>
