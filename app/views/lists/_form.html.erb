@@ -1,0 +1,9 @@
+<%= form_with model: @list do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :due_date %>
+  <%= f.date_field :due_date %><br>
+
+  <%= f.submit %>
+<% end %>
