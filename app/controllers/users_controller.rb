@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show]
+  before_action :find_user, only: [:show, :edit, :update]
 
   def show
   end
@@ -14,6 +14,17 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @user.save
+      redirect_to user_path(@user)
+    else
+      render :edit
     end
   end
 
