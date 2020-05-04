@@ -1,0 +1,23 @@
+<label for="list_name"><%= link_to list.name, list_path(list) %> - due: <%= list.due_date %></label>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Content</th>
+      <th>Assigned User</th>
+      <th>Priority</th>
+      <th>Due Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% list.items.each do |item| %>
+      <tr>
+        <td><%= button_to "Edit", edit_list_item_path(item), method: :get %></td>
+        <td><%= item.content %></td>
+        <td><%= item.assigned_user.username %></td>
+        <td><%= item.priority %></td>
+        <td><%= item.due_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

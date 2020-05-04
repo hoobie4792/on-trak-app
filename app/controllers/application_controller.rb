@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :item_priorities
 
   def current_user
     if !session[:user_id].nil? && session[:user_id] != ""
@@ -11,5 +11,9 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!current_user
+  end
+
+  def item_priorities
+    ["Very Low", "Low", "Medium", "High", "Very High"]
   end
 end
