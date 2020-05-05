@@ -6,4 +6,8 @@ class List < ApplicationRecord
   validates :name, presence: true
 
   accepts_nested_attributes_for :items, allow_destroy: true, reject_if: proc { |att| att['content'].blank? }
+
+  def user_usernames
+    self.users.map { |u| u.username }.join(", ")
+  end
 end
