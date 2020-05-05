@@ -16,7 +16,7 @@
         <td><%= item.content %></td>
         <td><%= item.assigned_user.username %></td>
         <td><%= item.priority %></td>
-        <td><%= item.due_date %></td>
+        <td><%= item.due_date.strftime("%b %e, %Y") %></td>
         <td><%= item.categories.map { |c| c.name }.join(', ') %></td>
       </tr>
     <% end %>
