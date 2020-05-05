@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     post '/update-members', to: 'lists#add_member', as: 'add_member'
     delete '/update-members', to: 'lists#remove_member', as: 'remove_member'
   end
-  resources :groups, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :groups, only: [:show, :new, :create, :edit, :update, :destroy] do
+    get '/update-members', to: 'groups#update_members', as: 'update_members'
+    post '/update-members', to: 'groups#add_member', as: 'add_member'
+    delete '/update-members', to: 'groups#remove_member', as: 'remove_member'
+  end 
   resources :users, param: :username, only: [:show, :new, :create, :edit, :update, :destroy]
 
   get '/', to: 'static#home'
