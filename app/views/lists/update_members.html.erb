@@ -1,0 +1,42 @@
+<h1>Update Members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Users</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @list.users.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= button_to "Remove Member", list_remove_member_path, method: :delete, params: { user_id: user.id } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_tag list_update_members_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query %>
+    <%= submit_tag "Search Username" %>
+  </p>
+<% end %>
+
+<% if @users %>
+  <table>
+    <tbody>
+      <% @users.each do |user| %>
+        <% if !@list.users.include? user%>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= button_to "Add User", list_add_member_path, method: :post, params: { user_id: user.id } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= button_to "Back to List", list_path(@list), method: :get %>
