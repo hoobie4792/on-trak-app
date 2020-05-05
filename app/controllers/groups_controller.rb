@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-  before_action :found_group, only: [:show, :edit, :update, :delete]
+  before_action :find_group, only: [:show, :edit, :update, :delete, :update_members, :add_member, :remove_member]
 
     def index 
         @groups = Group.all
@@ -37,10 +37,47 @@ class GroupsController < ApplicationController
        end
     end
 
+    def delete
+      
+    end 
+
+    def update_members
+      if params[:query]
+        @users = User.search(params[:query])
+      else
+        @users = nil
+      end
+    end
+  
+    def add_member
+      @user = User.find_by(id: params[:user_id])
+      if @user
+        GroupUser.create(group: @group, user: @user)
+      end
+        
+        redirect_to group_update_members_path(@group)
+    end
+
+    def remove_member
+      @user = User.find_by(id: params[:user_id])
+      if @user
+        @gu = GroupUser.find_by(group: @group, user: @user)
+        if @gu
+          @gu.destroy
+        end 
+      end
+      redirect_to group_update_members_path(@group)
+    end
+    
     private
 
-    def found_group
-        @group = Group.find_by(id: params[:id])
+    def find_group
+      if params[:id] 
+      @group = Group.find_by(id: params[:id])
+      end 
+      if params[:group_id]
+        @group = Group.find_by(id: params[:group_id])
+      end 
     end
 
     def group_params
@@ -48,3 +85,4 @@ class GroupsController < ApplicationController
     end
 
 end
+

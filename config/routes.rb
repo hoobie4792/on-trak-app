@@ -3,10 +3,14 @@ Rails.application.routes.draw do
  
   resources :lists, only: [:show, :new, :create, :edit, :update, :destroy] do 
     resources :items, only: [:new, :create, :edit, :update, :destroy]
-    get '/add_user', to: 'lists#search_user', as: 'search_user'
-    post '/add_user', to: 'lists#add_user', as: 'add_user'
+    get '/update-members', to: 'lists#update_members', as: 'update_members'
+    post '/update-members', to: 'lists#add_member', as: 'add_member'
   end
-  resources :groups, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :groups, only: [:show, :new, :create, :edit, :update, :destroy] do
+    get '/update-members', to: 'groups#update_members', as: 'update_members'
+    post '/update-members', to: 'groups#add_member', as: 'add_member'
+    delete '/update-members', to: 'groups#remove_member', as: 'remove_member'
+  end 
   resources :users, param: :username, only: [:show, :new, :create, :edit, :update, :destroy]
 
   get '/', to: 'static#home'
