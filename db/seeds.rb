@@ -86,90 +86,125 @@ Group.destroy_all
 
 brandon = User.create(username: "BrandonB", name: "Brandon", email: "brandon@brandon.com", password: "brandon", password_confirmation: "brandon")
 joey = User.create(username: "JoeyP", name: "Joey", email: "joey@joey.com", password: "joey", password_confirmation: "joey")
+# 10.times do
+#     User.create(username: Faker::Internet.username, name: Faker::Name.name, email: Faker::Internet.email, password: "password", password_confirmation: "password")
+# end
+
+# #  GROUPS
+
+# 10.times do
+#     Group.create(name: Faker::Games::Fallout.faction)
+# end
+
+# #  LISTS
+
+# l1 = List.create(name: "My List 1" , due_date: Faker::Date.forward(days: 2))
+# l2 = List.create(name: "My List 2", due_date: Faker::Date.forward(days: 5))
+# l3 = List.create(name: "My List 3", due_date: Faker::Date.forward(days: 6))
+# l4 = List.create(name: "My List 4", due_date: Faker::Date.forward(days: 1))
+# l5 = List.create(name: "My List 5", due_date: Faker::Date.forward(days: 5))
+# l6 = List.create(name: "My List 6", due_date: Faker::Date.forward(days: 7))
+# l7 = List.create(name: "My List 7", due_date: Faker::Date.forward(days: 8))
+# l8 = List.create(name: "My List 8", due_date: Faker::Date.forward(days: 5))
+# l9 = List.create(name: "My List 9", due_date: Faker::Date.forward(days: 9))
+# l10 = List.create(name: "My List 10", due_date: Faker::Date.forward(days: 8))
+# l11 = List.create(name: "My Work List 1", due_date: Faker::Date.forward(days: 4))
+# l12 = List.create(name: "My Work List 2", due_date: Faker::Date.forward(days: 6))
+# l13 = List.create(name: "My Work List 3", due_date: Faker::Date.forward(days: 7))
+# l14 = List.create(name: "My Work List 4", due_date: Faker::Date.forward(days: 1))
+# l15 = List.create(name: "My Work List 5", due_date: Faker::Date.forward(days: 8))
+# l16 = List.create(name: "My Work List 6", due_date: Faker::Date.forward(days: 2))
+# l17 = List.create(name: "My Work List 7", due_date: Faker::Date.forward(days: 5))
+# l18 = List.create(name: "My Work List 8", due_date: Faker::Date.forward(days: 6))
+# l19 = List.create(name: "My Work List 9", due_date: Faker::Date.forward(days: 5))
+# l20 = List.create(name: "My Work List 10", due_date: Faker::Date.forward(days: 3))
+
+
+
+
+# # CATEGORIES
+
+# cat1 = Category.create(name: "Work" )	
+# cat2 = Category.create(name: "Chores")	
+# cat3 = Category.create(name: "General")	
+# cat4 = Category.create(name: "School")	
+# cat5 = Category.create(name: "Car")	
+	
+# # ITEMS
+
+# 30.times do
+#     Item.create(content: "Item1", due_date: Faker::Date.forward(days: 2), priority: "High", assigned_user_id: User.all.sample.id, list_id: List.all.sample.id)
+# end 
+
+# 30.times do
+#     Item.create(content: "Item2", due_date: Faker::Date.forward(days: 3), priority: "Medium", assigned_user_id: User.all.sample.id, list_id: List.all.sample.id)
+# end
+
+# 30.times do
+#     Item.create(content: "Item3", due_date: Faker::Date.forward(days: 4), priority: "Low", assigned_user_id: User.all.sample.id, list_id: List.all.sample.id)
+# end
+
+
+# # JOINERS
+
+# 20.times do
+#     ItemCategory.create(item_id: Item.all.sample.id, category_id: Category.all.sample.id)
+# end 
+
+# 10.times do 
+#     UserList.create(user_id: User.all.sample.id, list_id: List.all.sample.id, is_owner: Faker::Boolean.boolean)
+# end
+
+# 10.times do
+#     GroupUser.create(user_id: User.all.sample.id, group_id: Group.all.sample.id)
+# end
+
+Priorities = ["Very Low", "Low", "Medium", "High", "Very High"]
+Categories_Array = ["Work", "General", "School", "Car", "Yardwork", "Cleaning"]
+
+# Users
 10.times do
-    User.create(username: Faker::Internet.username, name: Faker::Name.name, email: Faker::Internet.email, password: "password", password_confirmation: "password")
+    User.create(username: Faker::Internet.username.split('.').first, name: Faker::Name.name, email: Faker::Internet.email, password: "password", password_confirmation: "password")
 end
 
-#  GROUPS
-
+# Groups
 10.times do
     Group.create(name: Faker::Games::Fallout.faction)
 end
 
-#  LISTS
-
-# Priorities = ["Very Low", "Low", "Medium", "High", "Very High"]
-
-# User.all.each do |user|
-#     rand(0..2).times do
-#         GroupUser.create(user: user, group: Group.all.sample)
-#     end
-
-#     rand(1..4).times do
-#         list = List.create(name: "My List #{rand(0..100)}", due_date: Faker::Date.forward(days: rand(0..8)), user: user)
-#         rand(5..10).times do
-#             Item.create(content: "Item #{0..100}", due_date: Faker::Date.forward(days: rand(0..8)), priority: Priorities.sample, assigned_user: list.users.sample.name, list_id: List.all.sample.id)
-#         end
-#     end
-# end
-
-l1 = List.create(name: "My List 1" , due_date: Faker::Date.forward(days: 2))
-l2 = List.create(name: "My List 2", due_date: Faker::Date.forward(days: 5))
-l3 = List.create(name: "My List 3", due_date: Faker::Date.forward(days: 6))
-l4 = List.create(name: "My List 4", due_date: Faker::Date.forward(days: 1))
-l5 = List.create(name: "My List 5", due_date: Faker::Date.forward(days: 5))
-l6 = List.create(name: "My List 6", due_date: Faker::Date.forward(days: 7))
-l7 = List.create(name: "My List 7", due_date: Faker::Date.forward(days: 8))
-l8 = List.create(name: "My List 8", due_date: Faker::Date.forward(days: 5))
-l9 = List.create(name: "My List 9", due_date: Faker::Date.forward(days: 9))
-l10 = List.create(name: "My List 10", due_date: Faker::Date.forward(days: 8))
-l11 = List.create(name: "My Work List 1", due_date: Faker::Date.forward(days: 4))
-l12 = List.create(name: "My Work List 2", due_date: Faker::Date.forward(days: 6))
-l13 = List.create(name: "My Work List 3", due_date: Faker::Date.forward(days: 7))
-l14 = List.create(name: "My Work List 4", due_date: Faker::Date.forward(days: 1))
-l15 = List.create(name: "My Work List 5", due_date: Faker::Date.forward(days: 8))
-l16 = List.create(name: "My Work List 6", due_date: Faker::Date.forward(days: 2))
-l17 = List.create(name: "My Work List 7", due_date: Faker::Date.forward(days: 5))
-l18 = List.create(name: "My Work List 8", due_date: Faker::Date.forward(days: 6))
-l19 = List.create(name: "My Work List 9", due_date: Faker::Date.forward(days: 5))
-l20 = List.create(name: "My Work List 10", due_date: Faker::Date.forward(days: 3))
-
-
-
-
-# CATEGORIES
-
-cat1 = Category.create(name: "Work" )	
-cat2 = Category.create(name: "Chores")	
-cat3 = Category.create(name: "General")	
-cat4 = Category.create(name: "School")	
-cat5 = Category.create(name: "Car")	
-	
-# ITEMS
-
-30.times do
-    Item.create(content: "Item1", due_date: Faker::Date.forward(days: 2), priority: "High", assigned_user_id: User.all.sample.id, list_id: List.all.sample.id)
-end 
-
-30.times do
-    Item.create(content: "Item2", due_date: Faker::Date.forward(days: 3), priority: "Medium", assigned_user_id: User.all.sample.id, list_id: List.all.sample.id)
+# Categories
+Categories_Array.each do |category|
+    Category.create(name: category)
 end
 
-30.times do
-    Item.create(content: "Item3", due_date: Faker::Date.forward(days: 4), priority: "Low", assigned_user_id: User.all.sample.id, list_id: List.all.sample.id)
+# Populate lists per user
+User.all.each do |user|
+    rand(0..2).times do
+        GroupUser.create(user: user, group: Group.all.sample)
+    end
+    # Generate between 1 and 4 lists
+    rand(1..4).times do
+        list = List.create(name: "My List #{rand(0..100)}", due_date: Faker::Date.forward(days: rand(0..8)))
+        
+        # Tie user to list
+        UserList.create(user: user, list: list, is_owner: true)
+
+        # Add 0 to 3 collaborators
+        rand(0..3).times do
+            collaborator = User.all.sample
+            if user.id != collaborator.id
+                UserList.create(user: collaborator, list: list)
+            end
+        end
+
+        rand(5..10).times do
+            item = Item.create(content: "Item #{rand(0..100)}", due_date: Faker::Date.forward(days: rand(0..8)), priority: Priorities.sample, assigned_user: list.users.sample, list: list)
+            rand(0..2).times do
+                category = Category.all.sample
+                if !ItemCategory.find { |ic| ic.item.id == item.id && ic.category.id == category.id }
+                    ItemCategory.create(item: item, category: category)
+                end
+            end
+        end
+    end
 end
-
-
-# JOINERS
-
-20.times do
-    ItemCategory.create(item_id: Item.all.sample.id, category_id: Category.all.sample.id)
-end 
-
-10.times do 
-    UserList.create(user_id: User.all.sample.id, list_id: List.all.sample.id, is_owner: Faker::Boolean.boolean)
-end
-
-10.times do
-    GroupUser.create(user_id: User.all.sample.id, group_id: Group.all.sample.id)
-end   
