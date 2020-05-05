@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-  before_action :find_group, only: [:show, :edit, :update, :delete, :update_members, :add_member, :remove_member]
+  before_action :find_group, only: [:show, :edit, :update, :destroy, :update_members, :add_member, :remove_member]
 
     def index 
         @groups = Group.all
@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
     end 
     
     def edit
-
+      @user = current_user
     end
 
     def update
@@ -37,8 +37,10 @@ class GroupsController < ApplicationController
        end
     end
 
-    def delete
-      
+    def destroy
+      byebug
+      @group.destroy
+      redirect_to user_path(current_user)
     end 
 
     def update_members
