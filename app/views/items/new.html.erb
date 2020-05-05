@@ -1,0 +1,14 @@
+<%= form_with model: @item, url: list_items_path, method: :post do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content %><br>
+
+  <%= f.label :due_date %>
+  <%= f.date_field :due_date %><br>
+
+  <%= f.label :priority %>
+  <%= f.select :priority, item_priorities %><br>
+
+  <%= f.collection_select :assigned_user_id, @item.list.users, :id, :username %><br>
+
+  <%= f.submit %>
+<% end %>
