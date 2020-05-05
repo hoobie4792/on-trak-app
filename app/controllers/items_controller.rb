@@ -11,7 +11,8 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to list_path(@item.list)
     else
-      render :new
+      flash[:errors] = @item.errors.full_messages
+      redirect_to new_list_item_path
     end
   end
 
@@ -22,7 +23,8 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to list_path(@item.list)
     else
-      render :edit
+      flash[:errors] = @item.errors.full_messages
+      redirect_to edit_list_item_path(@item)
     end
   end
 
