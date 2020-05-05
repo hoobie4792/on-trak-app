@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :create, :edit, :update, :destroy]
     get '/update-members', to: 'lists#update_members', as: 'update_members'
     post '/update-members', to: 'lists#add_member', as: 'add_member'
+    delete '/update-members', to: 'lists#remove_member', as: 'remove_member'
   end
   resources :groups, only: [:show, :new, :create, :edit, :update, :destroy] do
     get '/update-members', to: 'groups#update_members', as: 'update_members'

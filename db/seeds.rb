@@ -199,11 +199,8 @@ User.all.each do |user|
 
         rand(5..10).times do
             item = Item.create(content: "Item #{rand(0..100)}", due_date: Faker::Date.forward(days: rand(0..8)), priority: Priorities.sample, assigned_user: list.users.sample, list: list)
-            rand(0..2).times do
-                category = Category.all.sample
-                if !ItemCategory.find { |ic| ic.item.id == item.id && ic.category.id == category.id }
-                    ItemCategory.create(item: item, category: category)
-                end
+            rand(0..1).times do
+                ItemCategory.create(item: item, category: Category.all.sample)
             end
         end
     end

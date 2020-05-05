@@ -1,3 +1,11 @@
+<% if flash[:errors] %>
+  <ul style="color:red">
+    <% flash[:errors].each do |message| %>
+      <li><%= message %></li> 
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @item, url: list_items_path, method: :post do |f| %>
   <%= f.label :content %>
   <%= f.text_field :content %><br>
@@ -12,3 +20,5 @@
 
   <%= f.submit %>
 <% end %>
+
+<%= button_to "Cancel", list_path(@item.list), method: :get %>

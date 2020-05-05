@@ -1,5 +1,3 @@
-<label for="list_name"><%= link_to list.name, list_path(list) %> - due: <%= list.due_date %></label><br>
-<label for="list_users">Users: <%= list.user_usernames %></label>
 <table>
   <thead>
     <tr>
@@ -16,7 +14,7 @@
         <td><%= item.content %></td>
         <td><%= item.assigned_user.username %></td>
         <td><%= item.priority %></td>
-        <td><%= item.due_date %></td>
+        <td><%= item.due_date.strftime("%b %e, %Y") if item.due_date %></td>
         <td><%= item.categories.map { |c| c.name }.join(', ') %></td>
       </tr>
     <% end %>

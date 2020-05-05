@@ -8,6 +8,7 @@
 <br>
 
 <% @user.lists.each do |list| %>
+  <%= render partial: '/lists/list_header', locals: { list: list } %>
   <%= render partial: '/lists/list', locals: { list: list } %>
   <br><br>
 <% end %>
