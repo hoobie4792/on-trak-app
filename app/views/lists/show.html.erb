@@ -1,5 +1,5 @@
 <%= render partial: 'list_header', locals: { list: @list } %>
-<%= render partial: 'list_show', locals: { list: @list } %>
+<%= render partial: 'list_with_edit', locals: { list: @list } %>
 
 <%= button_to "Add Item", new_list_item_path(@list), method: :get %>
 
