@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :find_list, only: [:show, :edit, :update, :search_user, :add_user]
+  before_action :find_list, only: [:show, :edit, :update, :update_members, :add_member, :remove_member]
 
   def show
   end
@@ -29,7 +29,7 @@ class ListsController < ApplicationController
     end
   end
 
-  def search_user
+  def update_members
     if params[:query]
       @users = User.search(params[:query])
     else
@@ -37,12 +37,23 @@ class ListsController < ApplicationController
     end
   end
 
-  def add_user
+  def add_member
     @user = User.find_by(id: params[:user_id])
     if @user
       UserList.create(list: @list, user: @user)
     end
-    redirect_to list_search_user_path(@list)
+    redirect_to list_update_members_path(@list)
+  end
+
+  def remove_member
+    @user = User.find_by(id: params[:user_id])
+    if @user
+      @ul = UserList.find_by(list: @list, user: @user)
+      if @ul
+        @ul.destroy
+      end
+    end
+    redirect_to list_update_members_path(@list)
   end
 
   private
