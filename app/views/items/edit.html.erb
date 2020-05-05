@@ -1,6 +1,6 @@
-<% if @item.errors.any? %>
+<% if flash[:errors] %>
   <ul style="color:red">
-    <% @item.errors.full_messages.each do |message| %>
+    <% flash[:errors].each do |message| %>
       <li><%= message %></li> 
     <% end %>
   </ul>
@@ -21,5 +21,6 @@
   <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
 
   <%= f.submit %>
-  <%= button_to "Cancel", list_path(@item.list), method: :get %>
 <% end %>
+
+<%= button_to "Cancel", list_path(@item.list), method: :get %>
