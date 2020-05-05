@@ -6,6 +6,7 @@
       <th>Assigned User</th>
       <th>Priority</th>
       <th>Due Date</th>
+      <th>Categories</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,7 @@
         <td><%= item.assigned_user.username %></td>
         <td><%= item.priority %></td>
         <td><%= item.due_date %></td>
+        <td><%= item.categories.map { |c| c.name }.join(', ') %></td>
       </tr>
     <% end %>
   </tbody>

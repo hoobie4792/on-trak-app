@@ -19,7 +19,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    byebug
     if @item.update(item_params)
       redirect_to list_path(@item.list)
     else
