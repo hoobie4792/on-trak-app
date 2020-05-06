@@ -7,4 +7,6 @@
 
 <%= button_to "Edit List Properties", edit_list_path(@list), method: :get %>
 
+<%= button_to "Delete List", list_path(@list), method: :delete, data: { confirm: "Are you sure you want to delete this list?" } %>
+
 <%= button_to "Back to Lists", user_path(current_user), method: :get %>
