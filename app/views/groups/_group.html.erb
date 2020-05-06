@@ -9,4 +9,4 @@
 
 <%= button_to "Update Members", group_update_members_path(group), method: :get %>
 <%= button_to "Edit Group", edit_group_path(group), method: :get %>
-
+<%= button_to "Delete Group", group_path(group), method: :delete, data: {confirm: "Are you sure?"} %>
