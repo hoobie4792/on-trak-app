@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in?, :item_priorities
+  helper_method :current_user, :logged_in?, :item_priorities, :sort_options
 
   def current_user
     if !session[:user_id].nil? && session[:user_id] != ""
@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   def item_priorities
-    ["Very Low", "Low", "Medium", "High", "Very High"]
+    Rails.application.config.item_priorities.map { |key, value| value }
+  end
+
+  def sort_options
+    Rails.application.config.sort_options
   end
 end

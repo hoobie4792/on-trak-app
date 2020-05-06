@@ -21,4 +21,38 @@ class List < ApplicationRecord
       end
     end
   end
+
+  def sort_list_by(criteria, category = nil)
+    items = self.items
+    if criteria
+      case criteria
+      when "Priority"
+        sorted_items = self.sort_by_priority(items)
+      when "Due Date"
+        sorted_items = self.sort_by_due_date(items)
+      when "Category"
+        sorted_items = self.sort_by_category(items, category)
+      else
+        sorted_items = items
+      end
+    else
+      sorted_items = items
+    end
+
+    sorted_items
+  end
+
+  def sort_by_priority(items)
+    items.sort_by{ |item| -Rails.application.config.item_priorities.key(item.priority) }
+  end
+
+  def sort_by_due_date(items)
+    items.sort_by{ |item| item.due_date }
+  end
+
+  def sort_by_category(items, category)
+    category_items = items.select { |item| item.categories.map { |cat| cat.name }.include? category }
+    non_category_items = items.select { |item| !(item.categories.map { |cat| cat.name }.include? category) }
+    category_items + non_category_items
+  end
 end

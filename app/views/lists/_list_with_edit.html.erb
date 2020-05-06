@@ -12,7 +12,8 @@
     </tr>
   </thead>
   <tbody>
-    <% list.items.each do |item| %>
+  <%byebug%>
+    <% items.each do |item| %>
       <tr <%= "style=text-decoration:line-through" if item.complete %>>
         <td><%= button_to "Edit", edit_list_item_path(list, item), method: :get %></td>
         <td><%= item.content %></td>

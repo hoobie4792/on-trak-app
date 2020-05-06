@@ -2,6 +2,7 @@ class ListsController < ApplicationController
   before_action :find_list, only: [:show, :edit, :update, :destroy, :update_members, :add_member, :remove_member, :add_group]
 
   def show
+    @items = @list.sort_list_by(params[:sort_option], params[:category])
   end
 
   def new
@@ -81,5 +82,4 @@ class ListsController < ApplicationController
       @list = List.find_by(id: params[:list_id])
     end
   end
-
 end
