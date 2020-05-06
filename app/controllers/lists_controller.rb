@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :find_list, only: [:show, :edit, :update, :update_members, :add_member, :remove_member]
+  before_action :find_list, only: [:show, :edit, :update, :update_members, :add_member, :remove_member, :add_group]
 
   def show
   end
@@ -10,8 +10,9 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    @list.add_group(params[:list][:group_id], current_user)
     if @list.save
-      UserList.create(user: current_user, list: @list)
+      UserList.create(user: current_user, list: @list) if !(@list.users.include? current_user)
       redirect_to list_path(@list)
     else
       render :new
@@ -54,6 +55,11 @@ class ListsController < ApplicationController
       end
     end
     redirect_to list_update_members_path(@list)
+  end
+
+  def add_group
+    @list.add_group(params[:group_id], current_user)
+    redirect_to list_update_members_path
   end
 
   private

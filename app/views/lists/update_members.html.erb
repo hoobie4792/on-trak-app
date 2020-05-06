@@ -1,5 +1,12 @@
 <h1>Update Members</h1>
 
+<%= form_with url: list_add_group_path, method: :post do |f| %>
+  <%= f.label "Add Group to List" %><br>
+  <%= f.collection_select :group_id, current_user.groups, :id, :name, include_blank: true, default: nil %>
+
+  <%= f.submit "Add Group" %>
+<% end %>
+
 <table>
   <thead>
     <tr>

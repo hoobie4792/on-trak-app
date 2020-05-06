@@ -1,6 +1,9 @@
 <%= form_with model: @list do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label "Add Group to List" %>
+  <%= f.collection_select :group_id, current_user.groups, :id, :name, include_blank: true, default: nil %><br>
 
   <%= f.label :due_date %>
   <%= f.date_field :due_date %><br>
