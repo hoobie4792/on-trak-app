@@ -6,7 +6,7 @@
   <%= f.collection_select :group_id, current_user.groups, :id, :name, include_blank: true, default: nil %><br>
 
   <%= f.label :due_date %>
-  <%= f.date_field :due_date %><br>
+  <%= f.date_field :due_date, include_blank: true, default: nil %><br>
 
   <%= f.submit %>
 <% end %>
