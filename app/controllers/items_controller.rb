@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :find_item, only: [:edit, :update, :destroy]
+  before_action :find_item, only: [:edit, :update, :destroy, :check_item]
 
   def new
     @item = Item.new(list_id: params[:list_id])
@@ -36,6 +36,16 @@ class ItemsController < ApplicationController
     @list = @item.list
     @item.destroy
     redirect_to list_path(@list)
+  end
+
+  def check_item
+    @item.complete = !@item.complete
+    @item.save
+    if params[:from_user]
+      redirect_to user_path(current_user)
+    else
+      redirect_to list_path(@item.list)
+    end
   end
 
   private
