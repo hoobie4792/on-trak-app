@@ -1,0 +1,10 @@
+<h1><%= current_user.username%>'s Groups</h1>
+<ul>
+<% current_user.groups.each do |group| %>
+    <li>
+    <%= link_to group.name, group_path(group) %>
+    </li>
+    <%end%>
+</ul>
+
+<%= button_to "Create New Group", new_group_path, method: :get %>

@@ -13,9 +13,12 @@ Rails.application.routes.draw do
     post '/update-members', to: 'groups#add_member', as: 'add_member'
     delete '/update-members', to: 'groups#remove_member', as: 'remove_member'
   end 
-  resources :users, param: :username, only: [:show, :new, :create, :edit, :update, :destroy]
-
-  get '/', to: 'static#home'
+  resources :users, param: :username, only: [:show, :new, :create, :edit, :update, :destroy] do
+    get '/groups', to: 'users#groups', as: "groups"
+  end 
+  
+  
+    get '/', to: 'static#home'
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
