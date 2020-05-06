@@ -19,9 +19,10 @@ class GroupsController < ApplicationController
         @group = Group.new(group_params)
         if @group.save
             GroupUser.create(user: current_user, group: @group)
-          redirect_to group_path(@group)
+            redirect_to group_path(@group)
         else 
-          render :new
+          flash[:error] = @group.errors.full_messages
+          redirect_to new_group_path
         end
     end 
     
@@ -38,7 +39,6 @@ class GroupsController < ApplicationController
     end
 
     def destroy
-      byebug
       @group.destroy
       redirect_to user_path(current_user)
     end 
