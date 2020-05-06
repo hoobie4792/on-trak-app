@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :find_list, only: [:show, :edit, :update, :update_members, :add_member, :remove_member, :add_group]
+  before_action :find_list, only: [:show, :edit, :update, :destroy, :update_members, :add_member, :remove_member, :add_group]
 
   def show
   end
@@ -28,6 +28,11 @@ class ListsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @list.destroy
+    redirect_to user_path(current_user)
   end
 
   def update_members

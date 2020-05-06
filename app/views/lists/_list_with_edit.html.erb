@@ -21,7 +21,7 @@
         <td><%= item.due_date.strftime("%b %e, %Y") if item.due_date %></td>
         <td><%= item.categories.map { |c| c.name }.join(', ') %></td>
         <td><%= button_to item.check_off_status, list_item_check_item_path(list, item), method: :post %></td>
-        <td><%= button_to "Delete Item", list_item_path(item), method: :delete, params: { item_id: item.id } %></td>
+        <td><%= button_to "Delete Item", list_item_path(item), method: :delete, params: { item_id: item.id }, data: { confirm: "Are you sure you want to delete this item?" } %></td>
       </tr>
     <% end %>
   </tbody>
