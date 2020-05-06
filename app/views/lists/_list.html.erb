@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <% list.items.each do |item| %>
-      <tr>
+      <tr <%= "style=text-decoration:line-through" if item.complete %>>
         <td><%= item.content %></td>
         <td><%= item.assigned_user.username %></td>
         <td><%= item.priority %></td>
