@@ -3,9 +3,8 @@
 
 <%= button_to "Add Item", new_list_item_path(@list), method: :get %>
 
-
 <%= button_to "Update List Members", list_update_members_path(@list), method: :get %>
 
 <%= button_to "Edit List Properties", edit_list_path(@list), method: :get %>
 
-<%= button_to "Back to Home", user_path(current_user), method: :get %>
+<%= button_to "Back to Lists", user_path(current_user), method: :get %>
