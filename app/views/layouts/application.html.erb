@@ -19,6 +19,15 @@
   </head>
 
   <body>
+  
+    <% if flash[:errors] %>
+      <ul style="color:red">
+        <% flash[:errors].each do |message| %>
+          <li><%= message %></li> 
+        <% end %>
+      </ul>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
