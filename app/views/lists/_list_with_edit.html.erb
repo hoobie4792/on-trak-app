@@ -7,6 +7,7 @@
       <th>Priority</th>
       <th>Due Date</th>
       <th>Categories</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,7 @@
         <td><%= item.priority %></td>
         <td><%= item.due_date.strftime("%b %e, %Y") if item.due_date %></td>
         <td><%= item.categories.map { |c| c.name }.join(', ') %></td>
+        <td><%= button_to "Delete Item", list_item_path(item), method: :delete, params: { item_id: item.id } %></td>
       </tr>
     <% end %>
   </tbody>
