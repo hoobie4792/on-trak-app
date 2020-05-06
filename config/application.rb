@@ -15,5 +15,7 @@ module OnTrakApp
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.item_priorities = { 1 => "Very Low", 2 => "Low", 3 => "Medium", 4 => "High", 5 => "Very High" }
+    config.sort_options = ["Priority", "Due Date", "Category"]
   end
 end

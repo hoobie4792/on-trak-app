@@ -1,5 +1,45 @@
+<%= form_tag("/lists/#{@list.id}", method: "get") do %>
+  <select name="sort_option" id="">
+    <% sort_options.each do |so| %>
+      <option value="<%= so %>"><%= so %></option>
+    <% end %>
+  </select>
+
+  <%= text_field_tag "category" %>
+
+  <%= submit_tag "Please Sort" %>
+<% end %>
+
 <%= render partial: 'list_header', locals: { list: @list } %>
-<%= render partial: 'list_with_edit', locals: { list: @list } %>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Content</th>
+      <th>Assigned User</th>
+      <th>Priority</th>
+      <th>Due Date</th>
+      <th>Categories</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr <%= "style=text-decoration:line-through" if item.complete %>>
+        <td><%= button_to "Edit", edit_list_item_path(@list, item), method: :get %></td>
+        <td><%= item.content %></td>
+        <td><%= item.assigned_user.username %></td>
+        <td><%= item.priority %></td>
+        <td><%= item.due_date.strftime("%b %e, %Y") if item.due_date %></td>
+        <td><%= item.categories.map { |c| c.name }.join(', ') %></td>
+        <td><%= button_to item.check_off_status, list_item_check_item_path(@list, item), method: :post %></td>
+        <td><%= button_to "Delete Item", list_item_path(item), method: :delete, params: { item_id: item.id }, data: { confirm: "Are you sure you want to delete this item?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= button_to "Add Item", new_list_item_path(@list), method: :get %>
 
