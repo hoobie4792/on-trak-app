@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
             GroupUser.create(user: current_user, group: @group)
             redirect_to group_path(@group)
         else 
-          flash[:error] = @group.errors.full_messages
+          flash[:errors] = @group.errors.full_messages
           redirect_to new_group_path
         end
     end 
@@ -34,7 +34,8 @@ class GroupsController < ApplicationController
        if @group.update(group_params)
            redirect_to group_path(@group)
        else 
-           render :edit
+        flash[:errors] = @group.errors.full_messages 
+        redirect_to edit_group_path(@group)
        end
     end
 

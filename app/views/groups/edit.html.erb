@@ -1,3 +1,6 @@
 <h1>Edit Group</h1>
 
 <%= render partial: 'form', locals: { group: @group }%>
+
+
+<%= button_to "Cancel", group_path(@group), method: :get%>
