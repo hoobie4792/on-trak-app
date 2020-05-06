@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :find_item, only: [:edit, :update]
+  before_action :find_item, only: [:edit, :update, :destroy]
 
   def new
     @item = Item.new(list_id: params[:list_id])
@@ -32,6 +32,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @list = @item.list
+    @item.destroy
+    redirect_to list_path(@list)
+  end
+
   private
 
   def item_params
@@ -39,6 +45,11 @@ class ItemsController < ApplicationController
   end
 
   def find_item
-    @item = Item.find_by(id: params[:id])
+    if params[:id]
+      @item = Item.find_by(id: params[:id])
+    end
+    if params[:item_id]
+      @item = Item.find_by(id: params[:item_id])
+    end
   end
 end
