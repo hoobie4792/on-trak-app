@@ -3,7 +3,7 @@
   <%= f.text_field :content %><br>
 
   <%= f.label :due_date %>
-  <%= f.date_select :due_date, include_blank: true, default: nil %><br>
+  <%= f.date_field :due_date, include_blank: true, default: nil %><br>
 
   <%= f.label :priority %>
   <%= f.select :priority, item_priorities %><br>
