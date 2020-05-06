@@ -17,5 +17,9 @@ class Item < ApplicationRecord
         ItemCategory.create(item_id: self.id, category_id: ic_id)
       end
     end
-  end 
+  end
+
+  def check_off_status
+    self.complete ? "✓" : "   "
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_185541) do
+ActiveRecord::Schema.define(version: 2020_05_06_165829) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_185541) do
     t.integer "list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "complete", default: false, null: false
     t.index ["assigned_user_id"], name: "index_items_on_assigned_user_id"
     t.index ["list_id"], name: "index_items_on_list_id"
   end

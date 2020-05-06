@@ -6,6 +6,7 @@
       <th>Priority</th>
       <th>Due Date</th>
       <th>Categories</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,7 @@
         <td><%= item.priority %></td>
         <td><%= item.due_date.strftime("%b %e, %Y") if item.due_date %></td>
         <td><%= item.categories.map { |c| c.name }.join(', ') %></td>
+        <td><%= button_to item.check_off_status, list_item_check_item_path(list, item), method: :post, params: { from_user: true } %></td>
       </tr>
     <% end %>
   </tbody>

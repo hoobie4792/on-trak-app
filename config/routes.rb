@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :categories, only: [:new, :create, :edit, :update]
  
   resources :lists, only: [:show, :new, :create, :edit, :update, :destroy] do 
-    resources :items, only: [:new, :create, :edit, :update, :destroy]
+    resources :items, only: [:new, :create, :edit, :update, :destroy] do 
+      post '/check-item', to: 'items#check_item', as: 'check_item'
+    end
     get '/update-members', to: 'lists#update_members', as: 'update_members'
     post '/update-members', to: 'lists#add_member', as: 'add_member'
     delete '/update-members', to: 'lists#remove_member', as: 'remove_member'
