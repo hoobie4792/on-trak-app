@@ -4,12 +4,37 @@
   <% end %>
 </ul>
 
-<%= form_with url: '/verify', method: :post do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :'login[username]' %><br>
+<div class="ui middle aligned center aligned grid">
+  <div style="max-width:450px">
+    <div class="ui container">
+      <div class="ui segment">
+        <%= form_with url: '/verify', method: :post, class: "ui form" do |f| %>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <%= f.text_field :'login[username]', placeholder: 'Username' %><br>
+            </div>
+          </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :'login[password]' %><br>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <%= f.password_field :'login[password]', placeholder: 'Password' %><br>
+            </div>
+          </div>
 
-  <%= f.submit "Login" %>
-<% end %>
+          <div class="field">
+            <%= f.submit "Login", class: "ui green fluid button" %>
+          </div>
+        <% end %>
+      </div>
+
+
+      <div class="ui message">
+        <div class="ui middle aligned center aligned grid">
+          Not a member <a href="/signup">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
