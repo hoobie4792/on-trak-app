@@ -1,3 +1,7 @@
 <label for="list_name"><%= link_to list.name, list_path(list) %><br>
 <label for="due_date">Due: <%= list.due_date.strftime("%b %e, %Y") if list.due_date %></label><br>
-<label for="list_users">Users: <%= list.user_usernames %></label>
+<label for="list_users">Users: 
+  <% list.users.each do |user| %>
+    <%= link_to user.username, user_path(user) %>
+  <% end %>
+</label>
