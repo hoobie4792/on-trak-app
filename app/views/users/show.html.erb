@@ -1,17 +1,68 @@
-<h1>Username: <%= @user.username %></h1>
-<h1>Name: <%= @user.name %></h1>
-<h1>Email: <%= @user.email %></h1>
+<div class="ui middle aligned center aligned grid">
+  <div style="max-width:80vw">
+    <h1>User Information</h1>
+    <div class="ui segment">
+      <div class="ui relaxed divided list">
+        <div class="item">
+          <i class="large user middle aligned icon"></i>
+          <div class="content">
+            <div class="header">
+              Username
+            </div>
+            <div class="content">
+              <%= @user.username %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="item">
+          <i class="large address book middle aligned icon"></i>
+          <div class="content">
+            <div class="header">
+              Name
+            </div>
+            <div class="content">
+              <%= @user.name %>
+            </div>
+          </div>
+        </div>
 
-<%= button_to "Your Groups", user_groups_path(@user), method: :get %><br>
+        <div class="item">
+          <i class="large envelope middle aligned icon"></i>
+          <div class="content">
+            <div class="header">
+              Email
+            </div>
+            <div class="content">
+              <%= @user.email %>
+            </div>
+          </div>
+        </div>
 
-<% @lists.each do |list| %>
-  <% if list.users.include? current_user %>
-    <%= render partial: '/lists/list_header', locals: { list: list } %>
-    <%= render partial: '/lists/list', locals: { list: list } %>
-    <br><br>
-  <% end %>
-<% end %>
+        <div class="item">
+          <div class="content">
+            <%= button_to "Edit Profile", edit_user_path(@user), method: :get, class: 'ui green fluid button' %>
+          </div>
+        </div>
+      </div>
+    </div><br><br>
 
-<%= button_to "Create New List", new_list_path, method: :get %><br>
 
-<%= button_to "Edit Profile", edit_user_path(@user), method: :get %>
+    <%= button_to  @user.username + "'s Groups", user_groups_path(@user), method: :get, class: 'ui green fluid button' %><br><br>
+
+    <%= button_to "Create New List", new_list_path, method: :get, class: 'ui green fluid button' %><br>
+
+    
+
+    <h1>User Lists</h1>  
+      <% @lists.each do |list| %>
+        <% if list.users.include? current_user %>
+          <div class="ui green segment">
+            <%= render partial: '/lists/list_header', locals: { list: list } %>
+            <%= render partial: '/lists/list', locals: { list: list } %>
+          </div><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
