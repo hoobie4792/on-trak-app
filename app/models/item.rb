@@ -6,7 +6,7 @@ class Item < ApplicationRecord
 
   validates :content, presence: true
 
-  def set_categories(category_ids)
+def set_categories(category_ids)
     # Destroy all ItemCategory rows with item == self
     item_categories = ItemCategory.select { |ic| ic.item == self }
     item_categories.each { |ic| ic.destroy }
