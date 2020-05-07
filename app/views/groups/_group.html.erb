@@ -8,6 +8,6 @@
 </ul>
 
 
-<%= button_to "Update Members", group_update_members_path(group), method: :get %>
-<%= button_to "Edit Group", edit_group_path(group), method: :get %>
-<%= button_to "Delete Group", group_path(group), method: :delete, data: {confirm: "Are you sure?"} %>
+<%= button_to "Update Members", group_update_members_path(group), method: :get, class: "green ui button" %><br>
+<%= button_to "Edit Group", edit_group_path(group), method: :get, class: "green ui button" %><br>
+<%= button_to "Delete Group", group_path(group), method: :delete, class: "red ui button", data: {confirm: "Are you sure?"} %>

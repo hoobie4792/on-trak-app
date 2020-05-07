@@ -1,6 +1,13 @@
-<h1>Edit Group</h1>
-
-<%= render partial: 'form', locals: { group: @group }%>
-
-
-<%= button_to "Cancel", group_path(@group), method: :get%>
+  <div class="ui middle aligned left aligned grid">
+    <div style="max-width:450px">
+      <div class="ui container">
+        <h2 class="ui green center aligned icon header">
+          <i class="green users circle icon"></i>
+          <div class="content">
+            Edit Group
+          </div>
+        </h2><br>
+       <%= render partial: 'form', locals: { group: @group }%>
+      </div>
+    </div>
+  </div>

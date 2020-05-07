@@ -1,42 +1,46 @@
 <h1>Update Members</h1>
 
-<table>
+<table class="ui celled table">
   <thead>
     <tr>
-      <th>Users</th>
+      <th>Username</th>
+      <th>Name</th>
+      <th>Email</th>
       <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @group.users.each do |user| %>
-    <tr>
-      <td><%= user.username %></td>
-      <td><%= button_to "Remove Member", group_remove_member_path(@group), method: :delete, params: { user_id: user.id } %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<%= form_tag group_update_members_path, method: :get do %>
-  <p>
-    <%= text_field_tag :query %>
-    <%= submit_tag "Search Username" %>
-  </p>
-<% end %>
-
-<% if @users %>
-  <table>
+    </tr></thead>
     <tbody>
-      <% @users.each do |user| %>
-        <% if !@group.users.include? user%>
-          <tr>
-            <td><%= user.username %></td>
-            <td><%= button_to "Add Member", group_update_members_path(@group), method: :post, params: { user_id: user.id } %></td>
-          </tr>
-        <% end %>
+      <% @group.users.each do |user| %>
+        <tr>
+        <td><%= user.username %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= button_to "Remove Member", group_remove_member_path(@group), method: :delete, class: "ui red fluid button", params: { user_id: user.id } %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>
-<% end %>
 
-<%= button_to "Back to Group", group_path(@group), method: :get %>
+    <%= form_tag group_update_members_path, method: :get do %>
+      <p>
+        <%= text_field_tag :query %>
+        <%= submit_tag "Search Username", class: "ui green button" %>
+      </p>
+    <% end %>
+
+    <% if @users %>
+      <table>
+        <tbody>
+          <% @users.each do |user| %>
+            <% if !@group.users.include? user%>
+              <tr>
+                <td><%= user.username %></td>
+                <td><%= button_to "Add Member", group_update_members_path(@group), method: :post, params: { user_id: user.id } %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
+<%= button_to "Back to Group", group_path(@group), method: :get, class: "ui button" %>
+

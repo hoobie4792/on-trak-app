@@ -1,8 +1,14 @@
 
-<%= form_with model: @group do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<%= f.hidden_field :user_id, :value => @user.id %><br><br>
-
-<%= f.submit%>
-<%end%>
+      <div class="ui segment">
+        <%= form_with model: @group, class: "ui form" do |f| %>
+         <div class="field">
+           <%= f.text_field :name, placeholder: "Group Name" %>
+         </div>
+            <%= f.hidden_field :user_id, :value => @user.id %>
+         
+         <div class="field">
+           <%= f.submit "Create Group", class: "ui green fluid button" %><br>
+        </div>
+        <%end%>
+        <%= button_to "Cancel", user_groups_path(current_user), method: :get, class: "ui button fluid"%>
+      </div>
