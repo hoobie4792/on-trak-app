@@ -11,6 +11,10 @@ class List < ApplicationRecord
     self.users.map { |u| u.username }.join(", ")
   end
 
+  def is_owner?(user)
+    UserList.find_by(list: self, user: user).is_owner
+  end
+
   def add_group(group_id, current_user)
     group = Group.find_by(id: group_id)
     if group
