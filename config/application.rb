@@ -16,6 +16,6 @@ module OnTrakApp
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.item_priorities = { 1 => "Very Low", 2 => "Low", 3 => "Medium", 4 => "High", 5 => "Very High" }
-    config.sort_options = ["Priority", "Due Date", "Category"]
+    config.sort_options = ["Priority", "Due Date", "Category", "Assigned User"]
   end
 end

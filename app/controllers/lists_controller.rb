@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   before_action :find_list, only: [:show, :edit, :update, :destroy, :update_members, :add_member, :remove_member, :add_group]
 
   def show
-    @items = @list.sort_list_by(params[:sort_option], params[:category])
+    @items = @list.sort_list_by(params[:option], params[:criteria])
   end
 
   def new
