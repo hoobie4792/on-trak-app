@@ -1,12 +1,12 @@
-<ul style="color: red">
-  <% if !flash[:message].nil? %>
-    <li><%= flash[:message] %><br><br></li>
-  <% end %>
-</ul>
-
 <div class="ui middle aligned center aligned grid">
   <div style="max-width:450px">
     <div class="ui container">
+      <h2 class="ui green center aligned icon header">
+        <i class="green user circle icon"></i>
+        <div class="content">
+          Log In
+        </div>
+      </h2>
       <div class="ui segment">
         <%= form_with url: '/verify', method: :post, class: "ui form" do |f| %>
           <div class="field">
