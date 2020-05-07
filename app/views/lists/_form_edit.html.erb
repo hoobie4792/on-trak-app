@@ -4,7 +4,7 @@
       <h2 class="ui green center aligned icon header">
         <i class="green pencil icon"></i>
         <div class="content">
-          Create List
+          Edit List
         </div>
       </h2>
       <div class="ui green segment">
@@ -13,10 +13,6 @@
             <div class="ui input">
               <%= f.text_field :name, placeholder: 'Name' %>
             </div>
-          </div>
-
-          <div class="field">
-              <%= f.collection_select :group_id, current_user.groups, :id, :name, { include_blank: 'Add Group', default: nil }, { class: 'ui dropdown' } %>
           </div>
 
           <%= f.date_field :due_date, include_blank: true, default: nil %><br><br>
