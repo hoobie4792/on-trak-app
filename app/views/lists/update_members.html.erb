@@ -1,49 +1,76 @@
-<h1>Update Members</h1>
+<div class="ui middle aligned center aligned grid">
+  <div style="max-width:60vw">
+    <div class="ui container">
+      <h2 class="ui green center aligned icon header">
+        <i class="green group icon"></i>
+        <div class="content">
+          Update Members
+        </div>
+      </h2>
+      <div class="ui green segment">
 
-<%= form_with url: list_add_group_path, method: :post do |f| %>
-  <%= f.label "Add Group to List" %><br>
-  <%= f.collection_select :group_id, current_user.groups, :id, :name, include_blank: true, default: nil %>
 
-  <%= f.submit "Add Group" %>
-<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Users</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @list.users.each do |user| %>
-      <tr>
-        <td><%= user.username %></td>
-        <td><%= button_to "Remove Member", list_remove_member_path, method: :delete, params: { user_id: user.id } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <h1>Update Members</h1>
 
-<%= form_tag list_update_members_path, method: :get do %>
-  <p>
-    <%= text_field_tag :query %>
-    <%= submit_tag "Search Username" %>
-  </p>
-<% end %>
+        <%= form_with url: list_add_group_path, method: :post do |f| %>
+          <%= f.collection_select :group_id, current_user.groups, :id, :name, { include_blank: "Select Group", default: nil }, { class: 'ui dropdown' } %>
 
-<% if @users %>
-  <table>
-    <tbody>
-      <% @users.each do |user| %>
-        <% if !@list.users.include? user%>
-          <tr>
-            <td><%= user.username %></td>
-            <td><%= button_to "Add User", list_add_member_path, method: :post, params: { user_id: user.id } %></td>
-          </tr>
+          <%= f.submit "Add Group", class: 'ui green button' %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
 
-<%= button_to "Back to List", list_path(@list), method: :get %>
+        <table class="ui table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @list.users.each do |user| %>
+              <tr>
+                <td><%= user.username %></td>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= button_to "Remove Member", list_remove_member_path, method: :delete, params: { user_id: user.id }, class: 'ui red button' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= form_tag list_update_members_path, method: :get do %>
+          <p>
+            <div class="ui input">
+              <%= text_field_tag :query %>
+            </div>
+            <%= submit_tag "Search Username", class: 'ui button' %>
+          </p>
+        <% end %>
+
+        <% if @users && @users.length > 0 %>
+          <table class="ui table">
+            <tbody>
+              <% @users.each do |user| %>
+                <% if !@list.users.include? user%>
+                  <tr>
+                    <td><%= user.username %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <td><%= button_to "Add User", list_add_member_path, method: :post, params: { user_id: user.id }, class: 'ui green button' %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %><br>
+
+        <%= button_to "Back to List", list_path(@list), method: :get, class: 'ui button' %><br><br>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
