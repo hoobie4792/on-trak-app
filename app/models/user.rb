@@ -21,4 +21,10 @@ class User < ApplicationRecord
     self.where("username LIKE ?", "%#{string}%")
   end
 
+  def sort_lists
+    self.lists.sort_by { |list| list.due_date }
+    incomplete_lists = self.lists.select { |list| list.items.map { |item| item.complete }.include?(false) }
+    complete_lists = self.lists.select { |list| list.items.map { |item| item.complete }.all?(true) }
+    incomplete_lists + complete_lists
+  end
 end
