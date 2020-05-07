@@ -1,27 +1,42 @@
-<%= form_tag("/lists/#{@list.id}", method: "get") do %>
-  <select name="option" id="">
-    <% sort_options.each do |so| %>
-      <option value="<%= so %>"><%= so %></option>
-    <% end %>
-  </select>
+<div class="ui middle aligned center aligned grid">
+  <div style="max-width:80vw">
+    <div class="ui green segment">
 
-  <%= text_field_tag "criteria" %>
 
-  <%= submit_tag "Sort" %>
-<% end %>
 
-<%= render partial: 'list_header', locals: { list: @list } %>
 
-<%= render partial: 'list_with_edit', locals: { list: @list, items: @items }%>
+                
 
-<%= button_to "Add Item", new_list_item_path(@list), method: :get %>
+                <%= render partial: 'list_header', locals: { list: @list } %>
 
-<%= button_to "Update List Members", list_update_members_path(@list), method: :get %>
+                <%= form_tag("/lists/#{@list.id}", method: "get") do %>
+                    <select name="option" id="", class="ui compact selection dropdown">
+                      <% sort_options.each do |so| %>
+                        <option value="<%= so %>"><%= so %></option>
+                      <% end %>
+                    </select>
 
-<%= button_to "Edit List Properties", edit_list_path(@list), method: :get %>
+                    <div class="ui input">
+                      <%= text_field_tag "criteria" %>
+                    </div>
+                    
+                    <%= submit_tag "Sort", class: 'ui button' %>
+                <% end %>
 
-<% if @list.is_owner?(current_user) %>
-  <%= button_to "Delete List", list_path(@list), method: :delete, data: { confirm: "Are you sure you want to delete this list?" } %>
-<% end %>
+                <%= render partial: 'list_with_edit', locals: { list: @list, items: @items }%>
 
-<%= button_to "Back to Lists", user_path(current_user), method: :get %>
+                <a href="<%= new_list_item_path(@list) %>"><button class="ui green button">Add Item</button></a>
+                <a href="<%= list_update_members_path(@list) %>"><button class="ui button">Update List Members</button></a>
+                <a href="<%= edit_list_path(@list) %>"><button class="ui button">Edit List Properties</button></a><br><br><br><br>
+                
+                <% if @list.is_owner?(current_user) %>
+                  <%= button_to "Delete List", list_path(@list), method: :delete, data: { confirm: "Are you sure you want to delete this list?" }, class: 'ui red fluid button' %>
+                <% end %><br>
+
+                <a href="<%= user_path(current_user) %>"><button class="ui fluid button">Back to Lists</button></a>
+
+
+
+    </div>
+  </div>
+</div>
