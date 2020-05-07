@@ -26,16 +26,18 @@ class List < ApplicationRecord
     end
   end
 
-  def sort_list_by(criteria, category = nil)
+  def sort_list_by(option, criteria = nil)
     items = self.items
-    if criteria
-      case criteria
+    if option
+      case option
       when "Priority"
-        sorted_items = self.sort_by_priority(items)
+        sorted_items = self.sort_by_priority(items, criteria)
       when "Due Date"
         sorted_items = self.sort_by_due_date(items)
       when "Category"
-        sorted_items = self.sort_by_category(items, category)
+        sorted_items = self.sort_by_category(items, criteria)
+      when "Assigned User"
+        sorted_items = self.sort_by_assigned_user(items, criteria)
       else
         sorted_items = items
       end
@@ -46,8 +48,16 @@ class List < ApplicationRecord
     sorted_items
   end
 
-  def sort_by_priority(items)
-    items.sort_by{ |item| -Rails.application.config.item_priorities.key(item.priority) }
+  def sort_by_priority(items, criteria)
+    if !criteria.empty?
+      criteria_items = items.select { |item| item.priority.downcase == criteria.downcase }
+      non_criteria_items = items.select { |item| item.priority.downcase != criteria.downcase }
+      sorted_items = criteria_items + non_criteria_items
+    else
+      sorted_items = items.sort_by{ |item| -Rails.application.config.item_priorities.key(item.priority) }
+    end
+
+    sorted_items
   end
 
   def sort_by_due_date(items)
@@ -55,8 +65,20 @@ class List < ApplicationRecord
   end
 
   def sort_by_category(items, category)
-    category_items = items.select { |item| item.categories.map { |cat| cat.name }.include? category }
-    non_category_items = items.select { |item| !(item.categories.map { |cat| cat.name }.include? category) }
-    category_items + non_category_items
+    if !category.empty?
+      category_items = items.select { |item| item.categories.map { |cat| cat.name.downcase }.include? category.downcase }
+      non_category_items = items.select { |item| !(item.categories.map { |cat| cat.name.downcase }.include? category.downcase) }
+      sorted_items = category_items + non_category_items
+    else
+      sorted_items = items
+    end
+
+    sorted_items
+  end
+
+  def sort_by_assigned_user(items, criteria)
+    criteria_items = items.select { |item| item.assigned_user.username.downcase == criteria.downcase }
+    non_criteria_items = items.select { |item| item.assigned_user.username.downcase != criteria.downcase }
+    sorted_items = criteria_items + non_criteria_items
   end
 end

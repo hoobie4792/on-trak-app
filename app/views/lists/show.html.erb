@@ -1,13 +1,13 @@
 <%= form_tag("/lists/#{@list.id}", method: "get") do %>
-  <select name="sort_option" id="">
+  <select name="option" id="">
     <% sort_options.each do |so| %>
       <option value="<%= so %>"><%= so %></option>
     <% end %>
   </select>
 
-  <%= text_field_tag "category" %>
+  <%= text_field_tag "criteria" %>
 
-  <%= submit_tag "Please Sort" %>
+  <%= submit_tag "Sort" %>
 <% end %>
 
 <%= render partial: 'list_header', locals: { list: @list } %>
