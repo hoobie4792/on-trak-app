@@ -4,7 +4,7 @@
 
 <%= button_to "Your Groups", user_groups_path(@user), method: :get %><br>
 
-<% @user.lists.each do |list| %>
+<% @lists.each do |list| %>
   <% if list.users.include? current_user %>
     <%= render partial: '/lists/list_header', locals: { list: list } %>
     <%= render partial: '/lists/list', locals: { list: list } %>

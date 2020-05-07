@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update]
 
   def show
+    @lists = @user.sort_lists
   end
 
   def new
