@@ -13,30 +13,40 @@
   </head>
 
   <body>
-    <%= image_tag("On Trak Header.png", height: '150') %>
+    
+    <div style="padding: 0px 0px 50px 0px">
+      <%= image_tag("On Trak Header.png", height: '150') %>
 
-    <div style="background-color:#00B346; padding:20px">
-      <div style="padding: 0vw 20vw">
-        <div class="ui segment menu">
-          <%= link_to "Home", '/', class: 'ui item' %>
-          <div class="right menu">
-            <% if logged_in? %> 
-              <%= link_to "Log out", logout_path, method: "post", class: "ui item" %>
-            <% else %>
-              <%= link_to "Login", login_path, class: 'ui item' %>
-              <%= link_to "Sign Up", new_user_path, class: 'ui item' %>
-            <% end %>
+      <div style="background-color:#00B346; padding:20px">
+        <div style="padding: 0vw 20vw">
+          <div class="ui segment menu">
+            <%= link_to "Home", '/', class: 'ui item' %>
+            <div class="right menu">
+              <% if logged_in? %> 
+                <%= link_to "Log out", logout_path, method: "post", class: "ui item" %>
+              <% else %>
+                <%= link_to "Login", login_path, class: 'ui item' %>
+                <%= link_to "Sign Up", new_user_path, class: 'ui item' %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    
-    <% if flash[:errors] %>
-        <% flash[:errors].each do |message| %>
-          <%= message %>
-        <% end %>
-    <% end %>
 
     <%= yield %>
+
+    <% if flash[:errors] %>
+      <div class="ui middle aligned center aligned grid">
+        <div style="width: 425px; padding: 20px 0px 0px 0px">
+          <div class="ui error message">
+            <% flash[:errors].each do |message| %>
+              <%= message %><br>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
   </body>
 </html>
