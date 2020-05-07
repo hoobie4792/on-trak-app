@@ -12,34 +12,7 @@
 
 <%= render partial: 'list_header', locals: { list: @list } %>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Content</th>
-      <th>Assigned User</th>
-      <th>Priority</th>
-      <th>Due Date</th>
-      <th>Categories</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr <%= "style=text-decoration:line-through" if item.complete %>>
-        <td><%= button_to "Edit", edit_list_item_path(@list, item), method: :get %></td>
-        <td><%= item.content %></td>
-        <td><%= item.assigned_user.username %></td>
-        <td><%= item.priority %></td>
-        <td><%= item.due_date.strftime("%b %e, %Y") if item.due_date %></td>
-        <td><%= item.categories.map { |c| c.name }.join(', ') %></td>
-        <td><%= button_to item.check_off_status, list_item_check_item_path(@list, item), method: :post %></td>
-        <td><%= button_to "Delete Item", list_item_path(item), method: :delete, params: { item_id: item.id }, data: { confirm: "Are you sure you want to delete this item?" } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: 'list_with_edit', locals: { list: @list, items: @items }%>
 
 <%= button_to "Add Item", new_list_item_path(@list), method: :get %>
 
@@ -47,6 +20,8 @@
 
 <%= button_to "Edit List Properties", edit_list_path(@list), method: :get %>
 
-<%= button_to "Delete List", list_path(@list), method: :delete, data: { confirm: "Are you sure you want to delete this list?" } %>
+<% if @list.is_owner?(current_user) %>
+  <%= button_to "Delete List", list_path(@list), method: :delete, data: { confirm: "Are you sure you want to delete this list?" } %>
+<% end %>
 
 <%= button_to "Back to Lists", user_path(current_user), method: :get %>
