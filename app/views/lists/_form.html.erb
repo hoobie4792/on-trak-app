@@ -1,12 +1,29 @@
-<%= form_with model: @list do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
+<div class="ui middle aligned center aligned grid">
+  <div style="max-width:40vw">
+    <div class="ui container">
+      <h2 class="ui green center aligned icon header">
+        <i class="green pencil icon"></i>
+        <div class="content">
+          Create List
+        </div>
+      </h2>
+      <div class="ui segment">
+        <%= form_with model: @list, class: 'ui form' do |f| %>
+          <div class="field">
+            <div class="ui input">
+              <%= f.text_field :name, placeholder: 'Name' %>
+            </div>
+          </div>
 
-  <%= f.label "Add Group to List" %>
-  <%= f.collection_select :group_id, current_user.groups, :id, :name, include_blank: true, default: nil %><br>
+          <div class="field">
+              <%= f.collection_select :group_id, current_user.groups, :id, :name, { include_blank: 'Add Group', default: nil }, { class: 'ui dropdown' } %>
+          </div>
 
-  <%= f.label :due_date %>
-  <%= f.date_field :due_date, include_blank: true, default: nil %><br>
+          <%= f.date_field :due_date, include_blank: true, default: nil %><br><br>
 
-  <%= f.submit %>
-<% end %>
+          <%= f.submit class: 'ui green fluid button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
