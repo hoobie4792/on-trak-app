@@ -24,7 +24,7 @@ class List < ApplicationRecord
     if group
       group.users.each do |user|
         if !(self.users.include? user)
-          UserList.create(user: user, list: self)
+          UserList.create(user: user, list: self, is_owner: user == current_user)
         end
       end
     end
