@@ -16,7 +16,8 @@ class ListsController < ApplicationController
       UserList.create(user: current_user, list: @list) if !(@list.users.include? current_user)
       redirect_to list_path(@list)
     else
-      render :new
+      flash[:errors] = @list.errors.full_messages
+      redirect_to new_list_path
     end
   end
 
@@ -27,7 +28,8 @@ class ListsController < ApplicationController
     if @list.update(list_params)
       redirect_to list_path(@list)
     else
-      render :edit
+      flash[:errors] = @list.errors.full_messages
+      redirect_to edit_list_path(@list)
     end
   end
 
