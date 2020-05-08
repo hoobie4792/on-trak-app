@@ -13,7 +13,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.add_group(params[:list][:group_id], current_user)
     if @list.save
-      UserList.create(user: current_user, list: @list) if !(@list.users.include? current_user)
+      UserList.create(user: current_user, list: @list, is_owner: true) if !(@list.users.include? current_user)
       redirect_to list_path(@list)
     else
       flash[:errors] = @list.errors.full_messages

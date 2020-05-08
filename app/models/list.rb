@@ -16,8 +16,7 @@ class List < ApplicationRecord
   end
 
   def owner
-    uls = UserList.all.select { |ul| ul.list == self }
-    uls.select { |ul| ul.is_owner == true }.first.user.username
+    UserList.find_by(list: self, is_owner: true).user.username
   end
 
   def add_group(group_id, current_user)
@@ -59,14 +58,14 @@ class List < ApplicationRecord
       non_criteria_items = items.select { |item| item.priority.downcase != criteria.downcase }
       sorted_items = criteria_items + non_criteria_items
     else
-      sorted_items = items.sort_by{ |item| -Rails.application.config.item_priorities.key(item.priority) }
+      sorted_items = items.sort_by{ |item| -Rails.application.config.item_priorities.key(item.priority.empty? ? "Very Low" : item.priority) }
     end
 
     sorted_items
   end
 
   def sort_by_due_date(items)
-    items.sort_by{ |item| item.due_date }
+    items.sort_by{ |item| item.due_date.nil? ? Time.zone.local(9999999999) : item.due_date }
   end
 
   def sort_by_category(items, category)
@@ -82,8 +81,8 @@ class List < ApplicationRecord
   end
 
   def sort_by_assigned_user(items, criteria)
-    criteria_items = items.select { |item| item.assigned_user.username.downcase == criteria.downcase }
-    non_criteria_items = items.select { |item| item.assigned_user.username.downcase != criteria.downcase }
+    criteria_items = items.select { |item| item.assigned_user.nil? ? false : item.assigned_user.username.downcase == criteria.downcase }
+    non_criteria_items = items.select { |item| item.assigned_user.nil? ? true : item.assigned_user.username.downcase != criteria.downcase }
     sorted_items = criteria_items + non_criteria_items
   end
 end

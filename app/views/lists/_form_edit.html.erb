@@ -18,7 +18,9 @@
           <%= f.date_field :due_date, include_blank: true, default: nil %><br><br>
 
           <%= f.submit class: 'ui green fluid button' %>
-        <% end %>
+        <% end %><br>
+
+        <a href="<%= list_path(list) %>"><button class="ui fluid button">Cancel</button></a><br>
       </div>
     </div>
   </div>
