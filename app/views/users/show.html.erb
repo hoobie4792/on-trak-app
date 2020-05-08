@@ -53,8 +53,8 @@
     <%= button_to "Create New List", new_list_path, method: :get, class: 'ui green fluid button' %><br>
 
     
-
-    <h1>User Lists</h1>  
+    <% if !@lists.empty? %>
+      <h1>User Lists</h1>  
       <% @lists.each do |list| %>
         <% if list.users.include? current_user %>
           <div class="ui green segment">
@@ -63,6 +63,6 @@
           </div><br>
         <% end %>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>
