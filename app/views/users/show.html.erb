@@ -50,8 +50,9 @@
 
     <%= button_to  @user.username + "'s Groups", user_groups_path(@user), method: :get, class: 'ui green fluid button' %><br><br>
 
-    <%= button_to "Create New List", new_list_path, method: :get, class: 'ui green fluid button' %><br>
-
+    <% if @user == current_user %>
+      <%= button_to "Create New List", new_list_path, method: :get, class: 'ui green fluid button' %><br>
+    <% end %>
     
     <% if !@lists.empty? %>
       <h1>User Lists</h1>  
@@ -65,6 +66,8 @@
       <% end %>
     <% end %>
 
-    <%= button_to "Delete Account", user_path(current_user), method: :delete, class: 'ui red fluid button', data: {confirm: "Are you sure you want to delete your account?"} %>
+    <% if @user == current_user%>
+      <%= button_to "Delete Account", user_path(current_user), method: :delete, class: 'ui red fluid button', data: {confirm: "Are you sure you want to delete your account?"} %>
+    <% end %>
   </div>
 </div>
