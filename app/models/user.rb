@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   def sort_lists
     self.lists.sort_by { |list| list.due_date.nil? ? Time.zone.local(99999999) : list.due_date }
-    incomplete_lists = self.lists.select { |list| !list.items.map { |item| item.complete }.include?(false) }
+    incomplete_lists = self.lists.select { |list| !list.items.map { |item| item.complete }.all?(true) }
     complete_lists = self.lists.select { |list| list.items.map { |item| item.complete }.all?(true) }
     incomplete_lists + complete_lists
   end
