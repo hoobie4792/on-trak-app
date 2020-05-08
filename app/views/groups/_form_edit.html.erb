@@ -1,0 +1,18 @@
+<div class="ui green segment">
+  <%= form_with model: @group, class: "ui form" do |f| %>
+    <%= f.hidden_field :user_id, :value => @user.id %>
+    
+    <h1>Group Name</h1>
+    <div class="field">
+      <%= f.text_field :name, placeholder: "Group Name" %>
+    </div>
+
+    <div class="field">
+      <%= f.submit "Update Group Name", class: "ui green fluid button" %><br>
+    </div>
+  <%end%>
+
+  <%= button_to "Cancel", user_groups_path(current_user), method: :get, class: "ui button fluid"%>
+
+  <%= render partial: 'update_members', locals: { group: @group } %>
+</div>
