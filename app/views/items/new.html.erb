@@ -1,20 +1,41 @@
-<%= form_with model: @item, url: list_items_path, method: :post do |f| %>
-  <%= f.label :content %>
-  <%= f.text_field :content %><br>
+<div class="ui middle aligned center aligned grid">
+  <div style="max-width:40vw">
+    <div class="ui container">
+      <h2 class="ui green center aligned icon header">
+        <i class="green tag icon"></i>
+        <div class="content">
+          Edit Item
+        </div>
+      </h2>
+      <div class="ui green segment">
+        <%= form_with model: @item, url: list_items_path, method: :post, class: 'ui form' do |f| %>
+          <div class="field">
+            <div class="ui input">
+              <%= f.text_field :content, placeholder: 'Content' %>
+            </div>
+          </div>
 
-  <%= f.label :due_date %>
-  <%= f.date_field :due_date, include_blank: true, default: nil %><br>
+          <div class="field">
+            <%= f.date_field :due_date, include_blank: true, default: nil %>
+          </div>
 
-  <%= f.label :priority %>
-  <%= f.select :priority, item_priorities %><br>
+          <div class="field">
+            <%= f.select :priority, item_priorities, { include_blank: "Priority" }, { class: 'ui dropdown' } %>
+          </div>
+          
+          <div class="field">
+            <%= f.collection_select :assigned_user_id, @item.list.users, :id, :username, { include_blank: "Assigned User" }, { class: 'ui dropdown' } %><br>
+          </div>
 
-  <%= f.label :assigned_user %>
-  <%= f.collection_select :assigned_user_id, @item.list.users, :id, :username %><br>
+          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br><br>
 
-  <%= f.label :categories %>
-  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
+          <div class="field">
+            <%= f.submit class: 'ui green fluid button' %>
+          </div>
+        <% end %><br>
 
-  <%= f.submit %>
-<% end %>
-
-<%= button_to "Cancel", list_path(@item.list), method: :get %>
+        <%= button_to "Cancel", list_path(@item.list), method: :get, class: 'ui fluid button' %>
+      </div>
+    </div>
+  </div>
+</div>
