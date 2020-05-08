@@ -1,13 +1,24 @@
-<h1>Group </h1>
+<div class="ui middle aligned center aligned grid">
+  <div style="max-width:80vw">
+    <h1>Group Info</h1><%= group.name %>
+    <div class="ui segment">
+      <div class="ui relaxed divided list">
+        <% group.users.each do |user| %>
+          <div class="item">
+            <i class="large green user middle aligned icon"></i>
+            <div class="content">
+              <%= link_to user.username, user_path(user) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+        <%= button_to "Update Members", group_update_members_path(group), method: :get, class: "green ui button" %><br>
+        <%= button_to "Edit Group", edit_group_path(group), method: :get, class: "green ui button" %><br>
+        <%= button_to "Delete Group", group_path(group), method: :delete, class: "red ui button", data: {confirm: "Are you sure?"} %>
+    </div>
+  </div>
+</div> 
 
-<label for="group_name"><%= group.name %></label>
-<ul>
-  <% group.users.each do |user| %>
-    <li><%= link_to user.username, user_path(user) %></li>
-  <% end %>
-</ul>
+    
 
 
-<%= button_to "Update Members", group_update_members_path(group), method: :get, class: "green ui button" %><br>
-<%= button_to "Edit Group", edit_group_path(group), method: :get, class: "green ui button" %><br>
-<%= button_to "Delete Group", group_path(group), method: :delete, class: "red ui button", data: {confirm: "Are you sure?"} %>

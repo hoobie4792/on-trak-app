@@ -1,13 +1,15 @@
-  <div class="ui middle aligned left aligned grid">
-    <div style="max-width:450px">
-      <div class="ui container">
-        <h2 class="ui green center aligned icon header">
-          <i class="green users circle icon"></i>
-          <div class="content">
-            Edit Group
-          </div>
-        </h2><br>
-       <%= render partial: 'form', locals: { group: @group }%>
+  <div class="ui middle aligned center aligned grid">
+    <div style="max-width:40vw">
+      <div class="ui green segment">
+        <div class="ui container">
+          <h2 class="ui green center aligned icon header">
+            <i class="green users circle icon"></i>
+            <div class="content">
+              Edit Group
+            </div>
+          </h2><br>
+        <%= render partial: 'form', locals: { group: @group }%>
+        </div>
       </div>
     </div>
   </div>

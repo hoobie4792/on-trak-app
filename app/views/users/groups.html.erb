@@ -1,10 +1,24 @@
-<h1><%= current_user.username%>'s Groups</h1>
-<ul>
-<% current_user.groups.each do |group| %>
-    <li>
-    <%= link_to group.name, group_path(group) %>
-    </li>
-    <%end%>
-</ul>
 
-<%= button_to "Create New Group", new_group_path, method: :get, class: "ui green button" %>
+<div class="ui middle aligned center aligned grid">
+  <div style="max-width:80vw">  
+    <h1><%= current_user.username%>'s Groups</h1>
+    <div class="ui green segment">
+      <div class="ui relaxed divided list">
+        <% current_user.groups.each do |group| %>
+          <div class="item">
+            <i class="large green users middle aligned icon"></i>
+              <div class="content">
+                <%= link_to group.name, group_path(group), class: "description" %>
+              </div>
+          </div>
+        <%end%>
+      </div>
+      <%= button_to "Create New Group", new_group_path, method: :get, class: "ui green fluid button" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
