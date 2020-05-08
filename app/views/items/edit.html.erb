@@ -34,7 +34,11 @@
           </div>
         <% end %><br>
 
-        <%= button_to "Cancel", list_path(@item.list), method: :get, class: 'ui fluid button' %>
+        <% if @item.list %>
+          <%= button_to "Cancel", list_path(@item.list), method: :get, class: 'ui fluid button' %>
+        <% else %>
+          <a href="<%= user_path(current_user) %>"><button class="ui fluid button">Back to Lists</button></a>
+        <% end %>
       </div>
     </div>
   </div>

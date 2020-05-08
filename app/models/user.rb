@@ -12,14 +12,12 @@ class User < ApplicationRecord
 
   has_secure_password
 
-
-  
   def to_param
     username
   end
 
   def self.search(string)
-    self.where("username LIKE ?", "%#{string}%")
+    self.where("username LIKE ?", "%#{string}%").reject { |u| u.active == false }
   end
 
   def sort_lists
@@ -27,5 +25,38 @@ class User < ApplicationRecord
     incomplete_lists = self.lists.select { |list| list.items.map { |item| item.complete }.include?(false) }
     complete_lists = self.lists.select { |list| list.items.map { |item| item.complete }.all?(true) }
     incomplete_lists + complete_lists
+  end
+
+  def delete_account
+    self.lists.each do |list|
+      ul = UserList.find_by(user: self, list: list)
+
+      # Remove item assignments
+      if ul 
+        if ul.is_owner
+          list.destroy
+        else
+          list.items.each do |item|
+            if item.assigned_user == self
+              item.assigned_user_id = nil
+              item.save
+            end
+          end
+        end
+      end
+
+      # Destroy UserList joiner
+      ul.destroy
+    end
+
+
+    # Delete all group user joiners
+    self.groups.each do |group|
+      GroupUser.find_by(user: self, group: group).destroy
+    end
+
+    # Set inactive status
+    self.active = false
+    self.save
   end
 end

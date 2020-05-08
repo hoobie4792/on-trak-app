@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update]
+  before_action :find_user, only: [:show, :edit, :update, :destroy, :groups]
 
   def show
     @lists = @user.sort_lists
@@ -32,6 +32,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.delete_account
+    session[:user_id] = nil
+    redirect_to '/'
+  end
+
+  def groups
+  end
+
   private
 
   def user_params
@@ -39,6 +48,11 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by(username: params[:username])
+    if params[:username]
+      @user = User.find_by(username: params[:username])
+    end
+    if params[:user_username]
+      @user = User.find_by(username: params[:user_username])
+    end
   end
 end

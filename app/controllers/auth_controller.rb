@@ -5,11 +5,11 @@ class AuthController < ApplicationController
 
   def verify
     @user = User.find_by(username: login_params[:username])
-    if @user && @user.authenticate(login_params[:password])
+    if @user && @user.authenticate(login_params[:password]) && @user.active
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash[:message] = "Login Failed: Try again"
+      flash[:errors] = ["Login Failed: Try again"]
       redirect_to '/login'
     end
   end

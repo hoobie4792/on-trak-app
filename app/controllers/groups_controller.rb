@@ -28,6 +28,11 @@ class GroupsController < ApplicationController
     
     def edit
       @user = current_user
+      if params[:query]
+        @users = User.search(params[:query])
+      else
+        @users = nil
+      end
     end
 
     def update
@@ -42,14 +47,6 @@ class GroupsController < ApplicationController
     def destroy
       @group.destroy
       redirect_to user_path(current_user)
-    end 
-
-    def update_members
-      if params[:query]
-        @users = User.search(params[:query])
-      else
-        @users = nil
-      end
     end
   
     def add_member
@@ -58,7 +55,7 @@ class GroupsController < ApplicationController
         GroupUser.create(group: @group, user: @user)
       end
         
-        redirect_to group_update_members_path(@group)
+        redirect_to edit_group_path(@group)
     end
 
     def remove_member
@@ -69,7 +66,7 @@ class GroupsController < ApplicationController
           @gu.destroy
         end 
       end
-      redirect_to group_update_members_path(@group)
+      redirect_to edit_group_path(@group)
     end
     
     private

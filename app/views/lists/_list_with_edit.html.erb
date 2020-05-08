@@ -16,7 +16,7 @@
       <tr <%= "style=text-decoration:line-through" if item.complete %>>
         <td><%= button_to "Edit", edit_list_item_path(list, item), method: :get, class: 'ui button' %></td>
         <td><%= item.content %></td>
-        <td><%= item.assigned_user.username %></td>
+        <td><%= item.assigned_user.username if item.assigned_user %></td>
         <td><%= item.priority %></td>
         <td><%= item.due_date.strftime("%b %e, %Y") if item.due_date %></td>
         <td><%= item.categories.map { |c| c.name }.join(', ') %></td>
