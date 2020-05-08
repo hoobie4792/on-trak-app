@@ -5,12 +5,12 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :create, :edit, :update, :destroy] do 
       post '/check-item', to: 'items#check_item', as: 'check_item'
     end
+    get '/update-members', to: 'lists#update_members', as: 'update_members'
     post '/update-members', to: 'lists#add_member', as: 'add_member'
     delete '/update-members', to: 'lists#remove_member', as: 'remove_member'
     post '/add-group', to: 'lists#add_group', as: 'add_group'
   end
   resources :groups, only: [:show, :new, :create, :edit, :update, :destroy] do
-    get '/update-members', to: 'groups#update_members', as: 'update_members'
     post '/update-members', to: 'groups#add_member', as: 'add_member'
     delete '/update-members', to: 'groups#remove_member', as: 'remove_member'
   end 

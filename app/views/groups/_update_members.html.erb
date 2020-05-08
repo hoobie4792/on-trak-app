@@ -33,7 +33,7 @@
             <td><%= user.username %></td>
             <td><%= user.name %></td>
             <td><%= user.email %></td>
-            <td><%= button_to "Add Member", group_update_members_path(group), method: :post, params: { user_id: user.id }, class: 'ui green button' %></td>
+            <td><%= button_to "Add Member", group_add_member_path(group), method: :post, params: { user_id: user.id }, class: 'ui green button' %></td>
           </tr>
         <% end %>
       <% end %>

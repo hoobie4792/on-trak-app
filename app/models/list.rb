@@ -15,6 +15,11 @@ class List < ApplicationRecord
     UserList.find_by(list: self, user: user).is_owner
   end
 
+  def owner
+    uls = UserList.all.select { |ul| ul.list == self }
+    uls.select { |ul| ul.is_owner == true }.first.user.username
+  end
+
   def add_group(group_id, current_user)
     group = Group.find_by(id: group_id)
     if group

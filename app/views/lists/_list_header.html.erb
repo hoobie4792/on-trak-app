@@ -1,5 +1,9 @@
 <div class="ui relaxed divided list">
   <div class="item">
+    <div class="header">List Owner:</div>
+    <div class="content"><%= list.owner %></div>
+  </div>
+  <div class="item">
     <div class="content">
       <label for="list_name"><%= link_to list.name, list_path(list) %><br>
       <label for="due_date">Due: <%= list.due_date.strftime("%b %e, %Y") if list.due_date %></label><br><br>
