@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update]
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def show
     @lists = @user.sort_lists
@@ -30,6 +30,12 @@ class UsersController < ApplicationController
       flash[:errors] = @user.errors.full_messages
       redirect_to edit_user_path(current_user)
     end
+  end
+
+  def destroy
+    @user.delete_account
+    session[:user_id] = nil
+    redirect_to '/'
   end
 
   private
