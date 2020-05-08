@@ -21,10 +21,10 @@ class User < ApplicationRecord
   end
 
   def sort_lists
-    self.lists.sort_by { |list| list.due_date.nil? ? Time.zone.local(0) : list.due_date }
-    incomplete_lists = self.lists.select { |list| list.items.map { |item| item.complete }.include?(false) }
+    self.lists.sort_by { |list| list.due_date.nil? ? Time.zone.local(99999999) : list.due_date }
+    incomplete_lists = self.lists.select { |list| !list.items.map { |item| item.complete }.include?(false) }
     complete_lists = self.lists.select { |list| list.items.map { |item| item.complete }.all?(true) }
-    incomplete_lists + complete_lists
+    # incomplete_lists + complete_lists
   end
 
   def delete_account
