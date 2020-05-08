@@ -1,8 +1,13 @@
 <div class="ui middle aligned center aligned grid">
   <div style="max-width:80vw">
-    <h1>Group Info</h1><%= group.name %>
+    <h1>Group Info</h1>
     <div class="ui segment">
       <div class="ui relaxed divided list">
+        <div class="item">
+          <div class="header">
+            <%= group.name %>
+          </div>
+        </div>
         <% group.users.each do |user| %>
           <div class="item">
             <i class="large green user middle aligned icon"></i>
@@ -12,9 +17,10 @@
           </div>
         <% end %>
       </div>
-        <%= button_to "Update Members", group_update_members_path(group), method: :get, class: "green ui button" %><br>
-        <%= button_to "Edit Group", edit_group_path(group), method: :get, class: "green ui button" %><br>
-        <%= button_to "Delete Group", group_path(group), method: :delete, class: "red ui button", data: {confirm: "Are you sure?"} %>
+        
+        <a href="<%= group_update_members_path(group) %>"><button class="ui button">Update Members</button></a>
+        <a href="<%= edit_group_path(group) %>"><button class="ui button">Edit Group</button></a><br><br>
+        <%= button_to "Delete Group", group_path(group), method: :delete, class: "red ui fluid button", data: {confirm: "Are you sure?"} %>
     </div>
   </div>
 </div> 
