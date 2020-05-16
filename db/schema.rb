@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_05_08_125509) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -19,8 +22,8 @@ ActiveRecord::Schema.define(version: 2020_05_08_125509) do
   end
 
   create_table "group_users", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "group_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_group_users_on_group_id"
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 2020_05_08_125509) do
   end
 
   create_table "item_categories", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "category_id", null: false
+    t.bigint "item_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_item_categories_on_category_id"
@@ -46,8 +49,8 @@ ActiveRecord::Schema.define(version: 2020_05_08_125509) do
     t.text "content"
     t.datetime "due_date"
     t.string "priority"
-    t.integer "assigned_user_id"
-    t.integer "list_id", null: false
+    t.bigint "assigned_user_id"
+    t.bigint "list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "complete", default: false, null: false
@@ -63,8 +66,8 @@ ActiveRecord::Schema.define(version: 2020_05_08_125509) do
   end
 
   create_table "user_lists", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "list_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "list_id", null: false
     t.boolean "is_owner", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
