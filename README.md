@@ -2,6 +2,15 @@
 On Trak is a Rails application that creates online to-do lists to be shared among Users.  The purpose of this application is to encourage efficient collaboration and accountability on shared tasks.  
 
 
+## Heroku App
+This app has been deployed to Heroku [here](https://on-trak.herokuapp.com/). You may create a new user or log in and explore using the credientials below:
+* Username: test1, Password: test
+* Username: test2, Password: test
+* Username: test3, Password: test
+
+PLEASE DO NOT DELETE ANY OF THE TEST USER ACCOUNTS. If you would like to test the account deletion, you should create an account by signing up under a new username.
+
+
 ## Prerequisites
 The install steps require the following on your system
 * Rails
