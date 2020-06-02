@@ -4,17 +4,18 @@ On Trak is a Rails application that creates online to-do lists to be shared amon
 
 ## Prerequisites
 The install steps require the following on your system
-* Github
-* Ruby 2.6.1
-* faker gem
+* Rails
+* Postgresql
+
 
 ## Install Intructions
 
-  1. Clone git@github.com:hoobie4792/on-trak-app.git to you local machine.
+  1. Clone this repository to you local machine.
   2. Once cloned, navigate to the base folder of this repositry.
   3. Run $ bundle install in the terminal to install required gems.
-  4. Run $ rails s to start application.  
-  5. You can now run the app on localhost:3000
+  4. Run $ rails db:setup to set up the database.
+  5. Run $ rails s to start application.  
+  6. You can now run the app on localhost:3000
 
 
 ## Application Structure and Rules
